@@ -23,9 +23,9 @@ export default class OfferList extends PureComponent {
           offer={offer}
           styleCardClass={styleCardClass}
           styleImgClass={styleImgClass}
-          styleInfoClass = {styleInfoClass}
+          styleInfoClass={styleInfoClass}
           onHover={() => {
-            const currentOffer = offers.find(function (off) {
+            const currentOffer = offers.find((off) => {
               return off.id === offer.id;
             });
             this.setState({

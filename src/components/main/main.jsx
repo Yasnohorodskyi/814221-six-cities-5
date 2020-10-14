@@ -3,9 +3,7 @@ import PropTypes from "prop-types";
 import OfferList from "../offer-list/offer-list";
 import {Link} from "react-router-dom";
 
-const Main = (props) => {
-  const {offersNumber} = props;
-  const {offers} = props;
+const Main = ({offersNumber, offers}) => {
   return (
     <React.Fragment>
 

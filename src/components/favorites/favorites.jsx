@@ -3,8 +3,7 @@ import OfferList from "../offer-list/offer-list";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Favorites = (props) => {
-  const {offers} = props;
+const Favorites = ({offers}) => {
   return (
     <React.Fragment>
       <div className="page">

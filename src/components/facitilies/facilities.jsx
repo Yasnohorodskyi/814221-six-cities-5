@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Facilities = (props) => {
-  const {facilities} = props;
+const Facilities = ({facilities}) => {
   const facilitiesItems = facilities.map((item, index) => (
     <li className="property__inside-item" key={index}>{item}</li>
   ));

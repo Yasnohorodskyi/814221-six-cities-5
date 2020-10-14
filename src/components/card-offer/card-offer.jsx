@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 
 const CardOffer = (props) => {
   const {
@@ -10,22 +11,19 @@ const CardOffer = (props) => {
     styleInfoClass,
   } = props;
   const {price, img, title, type, premium, id} = offer;
-
   return (
     <article
       className={styleCardClass + ` ` + `place-card`}
       dataid={id}
       onMouseOver={onHover}
     >
-      {premium === true ? (
+      {premium === true && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
-      ) : (
-        ``
       )}
       <div className={styleImgClass + ` ` + `place-card__image-wrapper`}>
-        <a href="#">
+        <Link to={`/offer/` + id}>
           <img
             className="place-card__image"
             src={img}
@@ -33,7 +31,7 @@ const CardOffer = (props) => {
             height="200"
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div
         className={
@@ -61,7 +59,7 @@ const CardOffer = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link to={`/offer/` + id}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

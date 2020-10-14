@@ -6,8 +6,7 @@ import Favorites from "../favorites/favorites";
 import Room from "../room/room";
 import SignIn from "../sign-in/sign-in";
 
-const App = (props) => {
-  const {offersNumber, offers} = props;
+const App = ({offersNumber, offers}) => {
   return (
     <BrowserRouter>
       <Switch>
@@ -20,9 +19,17 @@ const App = (props) => {
         <Route exact path="/favorites">
           <Favorites offers={offers} />
         </Route>
-        <Route exact path="/offer/:id">
-          <Room offer={offers[0]} />
-        </Route>
+        <Route
+          exact
+          path="/offer/:id"
+          render={({match}) => {
+            return (
+              <Room
+                offer={offers.find((offer) => offer.id === Number(match.params.id))}
+              />
+            );
+          }}
+        ></Route>
       </Switch>
     </BrowserRouter>
   );
