@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import OfferList from "../offer-list/offer-list";
 import {Link} from "react-router-dom";
+import Map from "../map/map";
 
 const Main = ({offersNumber, offers}) => {
   return (
@@ -112,7 +113,9 @@ const Main = ({offersNumber, offers}) => {
                 <OfferList offers = {offers} styleCardClass = "cities__place-card" styleImgClass = "cities__image-wrapper"/>
               </section>
               <div className="cities__right-section">
-                <section className="cities__map map"></section>
+                <section className="cities__map map">
+                  <Map offers = {offers}></Map>
+                </section>
               </div>
             </div>
           </div>

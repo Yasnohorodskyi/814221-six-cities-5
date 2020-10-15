@@ -4,6 +4,7 @@ import reviews from "../mocks/reviews";
 export default [
   {
     id: 1,
+    coordinates: [52.3909553943508, 4.85309666406198],
     img: `/img/apartment-01.jpg`,
     premium: true,
     price: 1000,
@@ -32,6 +33,7 @@ export default [
   },
   {
     id: 2,
+    coordinates: [52.3909553943508, 4.85309666406198],
     img: `/img/apartment-02.jpg`,
     premium: true,
     price: 200,
@@ -52,6 +54,7 @@ export default [
   },
   {
     id: 3,
+    coordinates: [52.369553943508, 4.85309666406198],
     img: `/img/apartment-03.jpg`,
     premium: true,
     price: 2000,
@@ -80,6 +83,7 @@ export default [
   },
   {
     id: 4,
+    coordinates: [52.369553943508, 4.85309666406198],
     img: `/img/apartment-02.jpg`,
     premium: false,
     price: 500,
@@ -101,6 +105,7 @@ export default [
 
   {
     id: 5,
+    coordinates: [52.3909553943508, 4.929309666406198],
     img: `/img/apartment-01.jpg`,
     premium: false,
     price: 100,
@@ -121,6 +126,7 @@ export default [
   },
   {
     id: 6,
+    coordinates: [52.3909553943508, 4.929309666406198],
     img: `/img/apartment-02.jpg`,
     premium: false,
     price: 750,
@@ -141,6 +147,7 @@ export default [
   },
   {
     id: 7,
+    coordinates: [52.3809553943508, 4.939309666406198],
     img: `/img/apartment-03.jpg`,
     premium: false,
     price: 1000,
@@ -161,6 +168,7 @@ export default [
   },
   {
     id: 8,
+    coordinates: [52.3809553943508, 4.939309666406198],
     img: `/img/apartment-03.jpg`,
     premium: true,
     price: 800,

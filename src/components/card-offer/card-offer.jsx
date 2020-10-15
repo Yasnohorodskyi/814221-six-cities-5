@@ -79,7 +79,7 @@ CardOffer.propTypes = {
   }).isRequired,
   styleCardClass: PropTypes.string.isRequired,
   styleImgClass: PropTypes.string.isRequired,
-  styleInfoClass: PropTypes.string.isRequired,
+  styleInfoClass: PropTypes.string,
 };
 
 export default CardOffer;
