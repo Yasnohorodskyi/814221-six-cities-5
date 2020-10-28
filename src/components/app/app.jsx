@@ -37,7 +37,7 @@ const App = ({offersNumber, offers}) => {
 
 App.propTypes = {
   offersNumber: PropTypes.number,
-  offers: PropTypes.array.isRequired,
 };
 
 export default App;
+

@@ -1,9 +1,12 @@
-import {getRandomElsFromArr} from "../utils/common";
+import { getRandomElsFromArr } from "../utils/common";
 import reviews from "../mocks/reviews";
 
 export default [
   {
     id: 1,
+    city: {
+      name: "Amsterdam",
+    },
     coordinates: [52.3909553943508, 4.85309666406198],
     img: `/img/apartment-01.jpg`,
     premium: true,
@@ -31,8 +34,12 @@ export default [
     },
     comments: getRandomElsFromArr(reviews, 2, reviews.length),
   },
+
   {
     id: 2,
+    city: {
+      name: "Amsterdam",
+    },
     coordinates: [52.3909553943508, 4.85309666406198],
     img: `/img/apartment-02.jpg`,
     premium: true,
@@ -54,6 +61,9 @@ export default [
   },
   {
     id: 3,
+    city: {
+      name: "Paris",
+    },
     coordinates: [52.369553943508, 4.85309666406198],
     img: `/img/apartment-03.jpg`,
     premium: true,
@@ -83,6 +93,9 @@ export default [
   },
   {
     id: 4,
+    city: {
+      name: "Paris",
+    },
     coordinates: [52.369553943508, 4.85309666406198],
     img: `/img/apartment-02.jpg`,
     premium: false,
@@ -105,6 +118,9 @@ export default [
 
   {
     id: 5,
+    city: {
+      name: "Paris",
+    },
     coordinates: [52.3909553943508, 4.929309666406198],
     img: `/img/apartment-01.jpg`,
     premium: false,
@@ -126,6 +142,9 @@ export default [
   },
   {
     id: 6,
+    city: {
+      name: "Cologne",
+    },
     coordinates: [52.3909553943508, 4.929309666406198],
     img: `/img/apartment-02.jpg`,
     premium: false,
@@ -147,6 +166,9 @@ export default [
   },
   {
     id: 7,
+    city: {
+      name: "Cologne",
+    },
     coordinates: [52.3809553943508, 4.939309666406198],
     img: `/img/apartment-03.jpg`,
     premium: false,
@@ -168,6 +190,9 @@ export default [
   },
   {
     id: 8,
+    city: {
+      name: "Brussels",
+    },
     coordinates: [52.3809553943508, 4.939309666406198],
     img: `/img/apartment-03.jpg`,
     premium: true,
