@@ -1,7 +1,7 @@
-import { extend } from "../utils/common";
-import { ActionType } from "../store/action";
+import {extend} from "../utils/common";
+import {ActionType} from "../store/action";
 import offers from "../mocks/offers";
-import { getOffersChoosenByCity } from "../utils/common";
+import {getOffersChoosenByCity} from "../utils/common";
 
 const initialState = {
   city: `Paris`,
@@ -11,7 +11,6 @@ const initialState = {
 };
 
 export const reducer = (state = initialState, action) => {
-  console.log(action.payload);
   switch (action.type) {
     case ActionType.CHANGE_CITY:
       return extend(state, {

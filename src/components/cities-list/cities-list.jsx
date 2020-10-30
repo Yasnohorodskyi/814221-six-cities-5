@@ -1,92 +1,55 @@
-import React, { PureComponent } from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { ActionCreator } from "../../store/action";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../store/action";
 import OfferList from "../offer-list/offer-list";
 import Map from "../map/map";
-
+import cn from "classnames";
 
 class CitiesList extends PureComponent {
   constructor(props) {
     super(props);
     this._onCLick = this._onCLick.bind(this);
   }
-  // componentDidUpdate() {
-  //   const { resetOffers } = this.props;
-  //   resetOffers();
-  // }
 
   _onCLick(evt) {
-    const { offersCity } = this.props;
-    const { city } = this.props;
-    const { changeCity } = this.props;
-    const { getOffers } = this.props;
-    const {offersAll} = this.props;
-
+    const {changeCity, getOffers, offersAll} = this.props;
     const currentCity = evt.target.textContent.toString();
-    evt.target.parentNode.classList.add(`tabs__item--active`);
     changeCity(currentCity);
     getOffers(currentCity, offersAll);
   }
+
   render() {
-    const { offersCity } = this.props;
-    const { city } = this.props;
+    const {offersCity, city, offersAll} = this.props;
+    const getCitiesLink = () => {
+      const getCitiesNames = () => {
+        const citiesNameAr = offersAll.map((offer) => {
+          return offer.city.name;
+        });
+        return new Set(citiesNameAr);
+      };
+      const names = [...getCitiesNames()];
+      return names.map((name, index) => {
+        return (
+          <li className="locations__item" key={index}>
+            <a
+              className={cn(`locations__item-link tabs__item`, {
+                "tabs__item--active": city === name,
+              })}
+              href="#"
+              onClick={this._onCLick}
+            >
+              <span>{name}</span>
+            </a>
+          </li>
+        );
+      });
+    };
     return (
       <React.Fragment>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <a
-                  className="locations__item-link tabs__item"
-                  href="#"
-                  onClick={this._onCLick}
-                >
-                  <span>Paris</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a
-                  className="locations__item-link tabs__item"
-                  href="#"
-                  onClick={this._onCLick}
-                >
-                  <span>Cologne</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a
-                  className="locations__item-link tabs__item"
-                  href="#"
-                  onClick={this._onCLick}
-                >
-                  <span>Brussels</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a
-                  className="locations__item-link tabs__item"
-                  href="#"
-                  onClick={this._onCLick}
-                >
-                  <span>Hamburg</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <a
-                  className="locations__item-link tabs__item"
-                  href="#"
-                  onClick={this._onCLick}
-                >
-                  <span>Dusseldorf</span>
-                </a>
-              </li>
-            </ul>
+            <ul className="locations__list tabs__list">{getCitiesLink()}</ul>
           </section>
         </div>
         <div className="cities">
@@ -142,7 +105,11 @@ class CitiesList extends PureComponent {
 
 CitiesList.propTypes = {
   offersNumber: PropTypes.number,
-  offers: PropTypes.array.isRequired,
+  offersCity: PropTypes.array.isRequired,
+  offersAll: PropTypes.array.isRequired,
+  city: PropTypes.string.isRequired,
+  changeCity: PropTypes.func.isRequired,
+  getOffers: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -156,7 +123,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.changeCity(city));
   },
   getOffers(city, offers) {
-    console.log(offers)
     dispatch(ActionCreator.getOffers(city, offers));
   },
   resetOffers() {
@@ -164,5 +130,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export { CitiesList };
+export {CitiesList};
 export default connect(mapStateToProps, mapDispatchToProps)(CitiesList);

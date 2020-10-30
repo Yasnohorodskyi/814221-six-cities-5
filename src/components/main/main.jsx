@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import CitiesList from "../cities-list/cities-list"
+import CitiesList from "../cities-list/cities-list";
 import {Link} from "react-router-dom";
 
 
@@ -42,7 +42,7 @@ const Main = ({offersNumber}) => {
 
         <main className="page__main page__main--index">
           <h1 className="visually-hidden">Cities</h1>
-          <CitiesList  offersNumber = {offersNumber}></CitiesList>
+          <CitiesList offersNumber = {offersNumber}></CitiesList>
         </main>
       </div>
     </React.Fragment>

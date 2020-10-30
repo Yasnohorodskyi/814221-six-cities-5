@@ -1,11 +1,11 @@
-import { getRandomElsFromArr } from "../utils/common";
+import {getRandomElsFromArr} from "../utils/common";
 import reviews from "../mocks/reviews";
 
 export default [
   {
     id: 1,
     city: {
-      name: "Amsterdam",
+      name: `Amsterdam`,
     },
     coordinates: [52.3909553943508, 4.85309666406198],
     img: `/img/apartment-01.jpg`,
@@ -38,7 +38,7 @@ export default [
   {
     id: 2,
     city: {
-      name: "Amsterdam",
+      name: `Amsterdam`,
     },
     coordinates: [52.3909553943508, 4.85309666406198],
     img: `/img/apartment-02.jpg`,
@@ -62,7 +62,7 @@ export default [
   {
     id: 3,
     city: {
-      name: "Paris",
+      name: `Paris`,
     },
     coordinates: [52.369553943508, 4.85309666406198],
     img: `/img/apartment-03.jpg`,
@@ -94,7 +94,7 @@ export default [
   {
     id: 4,
     city: {
-      name: "Paris",
+      name: `Paris`,
     },
     coordinates: [52.369553943508, 4.85309666406198],
     img: `/img/apartment-02.jpg`,
@@ -119,7 +119,7 @@ export default [
   {
     id: 5,
     city: {
-      name: "Paris",
+      name: `Paris`,
     },
     coordinates: [52.3909553943508, 4.929309666406198],
     img: `/img/apartment-01.jpg`,
@@ -143,7 +143,7 @@ export default [
   {
     id: 6,
     city: {
-      name: "Cologne",
+      name: `Cologne`,
     },
     coordinates: [52.3909553943508, 4.929309666406198],
     img: `/img/apartment-02.jpg`,
@@ -167,7 +167,7 @@ export default [
   {
     id: 7,
     city: {
-      name: "Cologne",
+      name: `Cologne`,
     },
     coordinates: [52.3809553943508, 4.939309666406198],
     img: `/img/apartment-03.jpg`,
@@ -191,7 +191,7 @@ export default [
   {
     id: 8,
     city: {
-      name: "Brussels",
+      name: `Brussels`,
     },
     coordinates: [52.3809553943508, 4.939309666406198],
     img: `/img/apartment-03.jpg`,
@@ -204,6 +204,54 @@ export default [
     rate: 5,
     bedrooms: `2 Bedrooms`,
     guests: `Max 3 adults`,
+    facilities: [`Wi-Fi`, `Towels`, `Fridge`],
+    owner: {
+      photo: `/img/avatar-max.jpg`,
+      name: `Max`,
+      super: false,
+    },
+    comments: getRandomElsFromArr(reviews, 2, reviews.length),
+  },
+  {
+    id: 9,
+    city: {
+      name: `Dusseldorf`,
+    },
+    coordinates: [52.3809553943508, 4.939309666406198],
+    img: `/img/apartment-03.jpg`,
+    premium: true,
+    price: 800,
+    title: `Beautiful & luxurious apartment at great location`,
+    info: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.
+     The building is green and from 18th century.`,
+    type: `house`,
+    rate: 5,
+    bedrooms: `2 Bedrooms`,
+    guests: `Max 3 adults`,
+    facilities: [`Wi-Fi`, `Towels`, `Fridge`],
+    owner: {
+      photo: `/img/avatar-max.jpg`,
+      name: `Max`,
+      super: false,
+    },
+    comments: getRandomElsFromArr(reviews, 2, reviews.length),
+  },
+  {
+    id: 10,
+    city: {
+      name: `Hamburg`,
+    },
+    coordinates: [52.3809553943508, 4.939309666406198],
+    img: `/img/apartment-02.jpg`,
+    premium: true,
+    price: 800,
+    title: `Beautiful & luxurious apartment at great location`,
+    info: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.
+     The building is green and from 18th century.`,
+    type: `house`,
+    rate: 5,
+    bedrooms: `3 Bedrooms`,
+    guests: `Max 4 adults`,
     facilities: [`Wi-Fi`, `Towels`, `Fridge`],
     owner: {
       photo: `/img/avatar-max.jpg`,

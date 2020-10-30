@@ -1,4 +1,4 @@
-import { getOffersChoosenByCity } from "../utils/common";
+import {getOffersChoosenByCity} from "../utils/common";
 export const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
   GET_OFFERS: `GET_OFFERS`,
@@ -8,7 +8,7 @@ export const ActionType = {
 export const ActionCreator = {
   changeCity: (city) => ({
     type: ActionType.CHANGE_CITY,
-    payload: city ,
+    payload: city,
   }),
   getOffers: (city, offers) => {
     const currentOffers = getOffersChoosenByCity(city, offers);
@@ -17,7 +17,7 @@ export const ActionCreator = {
       payload: currentOffers,
     };
   },
-  resetOffers: () =>({
+  resetOffers: () => ({
     type: ActionType.RESET_OFFERS,
-  })
+  }),
 };
