@@ -3,37 +3,56 @@ import PropTypes from "prop-types";
 import "leaflet/dist/leaflet.css";
 import leaflet from "leaflet";
 
+const icon = leaflet.icon({
+  iconUrl: `img/pin.svg`,
+  iconSize: [30, 30],
+});
+
 class Map extends PureComponent {
   constructor(props) {
     super(props);
   }
   componentDidMount() {
     const city = [52.38333, 4.9];
-    const icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [30, 30],
-    });
     const zoom = 12;
-    const map = leaflet.map(`map`, {
+    this._map = leaflet.map(`map`, {
       center: city,
       zoom,
       zoomControl: false,
       marker: true,
     });
 
-    map.setView(city, zoom);
+    this._map.setView(city, zoom);
     leaflet
       .tileLayer(
           `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`,
           {
-            attribution:
-              `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`,
+            attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`,
           }
       )
-      .addTo(map);
+      .addTo(this._map);
 
+    let markers = [];
     this.props.offers.forEach((elem) => {
-      leaflet.marker(elem.coordinates, {icon}).addTo(map);
+      const marker = leaflet.marker(elem.coordinates, {icon});
+      markers.push(marker);
+
+      this._markersLayer = leaflet.layerGroup(markers);
+      this._markersLayer.addTo(this._map);
+    });
+  }
+
+  componentDidUpdate() {
+    this._markersLayer.clearLayers();
+    this._markersLayer = null;
+
+    let markers = [];
+    this.props.offers.forEach((elem) => {
+      const marker = leaflet.marker(elem.coordinates, {icon});
+      markers.push(marker);
+
+      this._markersLayer = leaflet.layerGroup(markers);
+      this._markersLayer.addTo(this._map);
     });
   }
   render() {

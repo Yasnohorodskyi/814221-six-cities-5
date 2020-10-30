@@ -19,3 +19,12 @@ const getRandomInteger = (a = 0, b = 1) => {
 
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
+
+export const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
+
+export const getOffersChoosenByCity = (city, offers) => {
+  const currentOffers = offers.filter((elem) => elem.city.name === city);
+  return currentOffers;
+};
