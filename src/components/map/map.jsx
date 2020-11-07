@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 import leaflet from "leaflet";
 
 const icon = leaflet.icon({
-  iconUrl: `img/pin.svg`,
+  iconUrl: `/img/pin.svg`,
   iconSize: [30, 30],
 });
 

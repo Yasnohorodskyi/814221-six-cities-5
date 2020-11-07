@@ -2,10 +2,12 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
-import OfferList from "../offer-list/offer-list";
+import withOffersList from "../../hocs/with-offers-list/with-offers-list";
+import Offers from "../offers-list/offers-list";
 import Map from "../map/map";
 import cn from "classnames";
 
+const OffersList = withOffersList(Offers);
 class CitiesList extends PureComponent {
   constructor(props) {
     super(props);
@@ -85,7 +87,7 @@ class CitiesList extends PureComponent {
                   </li>
                 </ul>
               </form>
-              <OfferList
+              <OffersList
                 offers={offersCity}
                 styleCardClass="cities__place-card"
                 styleImgClass="cities__image-wrapper"
