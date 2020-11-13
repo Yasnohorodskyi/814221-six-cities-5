@@ -6,6 +6,7 @@ import withOffersList from "../../hocs/with-offers-list/with-offers-list";
 import Offers from "../offers-list/offers-list";
 import Map from "../map/map";
 import cn from "classnames";
+import SortingMethods from "../sorting-methods/sorting-methods";
 
 const OffersList = withOffersList(Offers);
 class CitiesList extends PureComponent {
@@ -61,32 +62,7 @@ class CitiesList extends PureComponent {
               <b className="places__found">
                 {offersCity.length} places to stay in {city}
               </b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex="0">
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li
-                    className="places__option places__option--active"
-                    tabIndex="0"
-                  >
-                    Popular
-                  </li>
-                  <li className="places__option" tabIndex="0">
-                    Price: low to high
-                  </li>
-                  <li className="places__option" tabIndex="0">
-                    Price: high to low
-                  </li>
-                  <li className="places__option" tabIndex="0">
-                    Top rated first
-                  </li>
-                </ul>
-              </form>
+              <SortingMethods></SortingMethods>
               <OffersList
                 offers={offersCity}
                 styleCardClass="cities__place-card"
@@ -118,6 +94,7 @@ const mapStateToProps = (state) => ({
   offersCity: state.offersCity,
   offersAll: state.offersAll,
   city: state.city,
+
 });
 
 const mapDispatchToProps = (dispatch) => ({

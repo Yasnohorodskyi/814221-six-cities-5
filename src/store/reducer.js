@@ -6,8 +6,7 @@ import {getOffersChoosenByCity} from "../utils/common";
 const initialState = {
   city: `Paris`,
   offersAll: offers,
-  offersCity: getOffersChoosenByCity(`Paris`, offers)
-
+  offersCity: getOffersChoosenByCity(`Paris`, offers),
 };
 
 export const reducer = (state = initialState, action) => {
@@ -24,6 +23,11 @@ export const reducer = (state = initialState, action) => {
 
     case ActionType.RESET_OFFERS:
       return extend({}, initialState);
+
+    case ActionType.CHANGE_SORT_TYPE:
+      return extend(state, {
+        sortType: action.payload,
+      });
   }
   return state;
 };

@@ -4,7 +4,7 @@
   "private": true,
   "description": "Личный проект «Шесть городов» от HTML Academy",
   "scripts": {
-    "eslint": "eslint   --ext .jsx --ext .js src/",
+    "eslint": "eslint  --fix  --ext .jsx --ext .js src/",
     "test": "npm run eslint",
     "build": "webpack --mode production",
     "start": "webpack-dev-server"
@@ -35,6 +35,7 @@
     "react-dom": "16.12.0",
     "react-redux": "7.2.2",
     "react-router-dom": "5.1.2",
-    "redux": "4.0.5"
+    "redux": "4.0.5",
+    "reselect": "4.0.0"
   }
 }
