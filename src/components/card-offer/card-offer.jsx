@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
+import {Link, withRouter} from "react-router-dom";
+
 
 const CardOffer = (props) => {
   const {
@@ -82,4 +83,4 @@ CardOffer.propTypes = {
   styleInfoClass: PropTypes.string,
 };
 
-export default CardOffer;
+export default withRouter(CardOffer);

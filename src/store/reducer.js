@@ -1,12 +1,11 @@
 import {extend} from "../utils/common";
 import {ActionType} from "../store/action";
 import offers from "../mocks/offers";
-import {getOffersChoosenByCity} from "../utils/common";
 
 const initialState = {
   city: `Paris`,
   offersAll: offers,
-  offersCity: getOffersChoosenByCity(`Paris`, offers),
+  sortType: `Popular`,
 };
 
 export const reducer = (state = initialState, action) => {

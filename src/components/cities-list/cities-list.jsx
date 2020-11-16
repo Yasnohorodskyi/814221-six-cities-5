@@ -7,19 +7,26 @@ import Offers from "../offers-list/offers-list";
 import Map from "../map/map";
 import cn from "classnames";
 import SortingMethods from "../sorting-methods/sorting-methods";
+import {getSortedOffers} from "../../store/selectors/get-filter-offers";
 
 const OffersList = withOffersList(Offers);
 class CitiesList extends PureComponent {
   constructor(props) {
     super(props);
     this._onCLick = this._onCLick.bind(this);
+    this._onTabClick = this._onTabClick.bind(this);
   }
 
   _onCLick(evt) {
-    const {changeCity, getOffers, offersAll} = this.props;
+    const {changeCity} = this.props;
     const currentCity = evt.target.textContent.toString();
     changeCity(currentCity);
-    getOffers(currentCity, offersAll);
+  }
+
+  _onTabClick(evt) {
+    const {changeSortType} = this.props;
+    const sort = evt.target.textContent.toString();
+    changeSortType(sort);
   }
 
   render() {
@@ -62,7 +69,7 @@ class CitiesList extends PureComponent {
               <b className="places__found">
                 {offersCity.length} places to stay in {city}
               </b>
-              <SortingMethods></SortingMethods>
+              <SortingMethods onTabClick = {this._onTabClick}></SortingMethods>
               <OffersList
                 offers={offersCity}
                 styleCardClass="cities__place-card"
@@ -87,13 +94,14 @@ CitiesList.propTypes = {
   offersAll: PropTypes.array.isRequired,
   city: PropTypes.string.isRequired,
   changeCity: PropTypes.func.isRequired,
-  getOffers: PropTypes.func.isRequired
+  changeSortType: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  offersCity: state.offersCity,
+  offersCity: getSortedOffers(state),
   offersAll: state.offersAll,
   city: state.city,
+  sortType: state.sortType,
 
 });
 
@@ -101,11 +109,11 @@ const mapDispatchToProps = (dispatch) => ({
   changeCity(city) {
     dispatch(ActionCreator.changeCity(city));
   },
-  getOffers(city, offers) {
-    dispatch(ActionCreator.getOffers(city, offers));
-  },
   resetOffers() {
     dispatch(ActionCreator.resetOffers());
+  },
+  changeSortType(sortType) {
+    dispatch(ActionCreator.changeSortType(sortType));
   },
 });
 
