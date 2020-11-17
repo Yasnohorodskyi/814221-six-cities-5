@@ -10,6 +10,7 @@ import withOffersList from "../../hocs/with-offers-list/with-offers-list";
 import Offers from "../offers-list/offers-list";
 const OffersList = withOffersList(Offers);
 
+
 const SendCommForm = withSendCommentForm(SendCommentForm);
 const Room = (props) => {
   const {offer} = props;
