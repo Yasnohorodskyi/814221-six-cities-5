@@ -14,7 +14,6 @@ class CitiesList extends PureComponent {
   constructor(props) {
     super(props);
     this._onCLick = this._onCLick.bind(this);
-    this._onTabClick = this._onTabClick.bind(this);
   }
 
   _onCLick(evt) {
@@ -23,11 +22,6 @@ class CitiesList extends PureComponent {
     changeCity(currentCity);
   }
 
-  _onTabClick(evt) {
-    const {changeSortType} = this.props;
-    const sort = evt.target.textContent.toString();
-    changeSortType(sort);
-  }
 
   render() {
     const {offersCity, city, offersAll} = this.props;
@@ -94,7 +88,6 @@ CitiesList.propTypes = {
   offersAll: PropTypes.array.isRequired,
   city: PropTypes.string.isRequired,
   changeCity: PropTypes.func.isRequired,
-  changeSortType: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -112,9 +105,7 @@ const mapDispatchToProps = (dispatch) => ({
   resetOffers() {
     dispatch(ActionCreator.resetOffers());
   },
-  changeSortType(sortType) {
-    dispatch(ActionCreator.changeSortType(sortType));
-  },
+
 });
 
 export {CitiesList};

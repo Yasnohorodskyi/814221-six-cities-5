@@ -1,14 +1,25 @@
-import React from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import cn from "classnames";
 import {connect} from "react-redux";
-const SortingMethods = ({onTabClick, sortType}) => {
+import {ActionCreator} from "../../store/action";
+
+const SortingMethods = ({changeSortType, sortType}) => {
+  let [opened, setOpened] = useState(true);
+
   const sortTypes = [
     `Popular`,
     `Price: low to high`,
     `Price: high to low`,
     `Top rated first`,
   ];
+  const onTabClick = (evt) => {
+
+    const sort = evt.target.textContent.toString();
+    changeSortType(sort);
+    setOpened(false);
+
+  };
   const getSortNames = () => {
     return sortTypes.map((name, index) => {
       return (
@@ -25,16 +36,27 @@ const SortingMethods = ({onTabClick, sortType}) => {
       );
     });
   };
+
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
-      <span className="places__sorting-type" tabIndex="0">
+      <span
+        className="places__sorting-type"
+        tabIndex="0"
+        onClick={() => {
+          setOpened(!opened);
+        }}
+      >
         {sortType}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <ul className="places__options places__options--custom places__options--opened">
+      <ul
+        className={cn(`places__options places__options--custom`, {
+          "places__options--opened": opened === true,
+        })}
+      >
         {getSortNames()}
       </ul>
     </form>
@@ -42,12 +64,16 @@ const SortingMethods = ({onTabClick, sortType}) => {
 };
 
 SortingMethods.propTypes = {
-  onTabClick: PropTypes.func.isRequired,
+  changeSortType: PropTypes.func.isRequired,
   sortType: PropTypes.string.isRequired,
 };
 const mapStateToProps = (state) => ({
   sortType: state.sortType,
-
 });
 
-export default connect(mapStateToProps)(SortingMethods);
+const mapDispatchToProps = (dispatch) => ({
+  changeSortType(sortType) {
+    dispatch(ActionCreator.changeSortType(sortType));
+  },
+});
+export default connect(mapStateToProps, mapDispatchToProps)(SortingMethods);
