@@ -6,6 +6,7 @@ const initialState = {
   city: `Paris`,
   offersAll: offers,
   sortType: `Popular`,
+  activeCard: offers[0],
 };
 
 export const reducer = (state = initialState, action) => {
@@ -26,6 +27,10 @@ export const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_SORT_TYPE:
       return extend(state, {
         sortType: action.payload,
+      });
+    case ActionType.SET_ACTIVE_CARD:
+      return extend(state, {
+        activeCard: action.payload,
       });
   }
   return state;

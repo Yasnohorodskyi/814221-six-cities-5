@@ -4,17 +4,26 @@ import "leaflet/dist/leaflet.css";
 import leaflet from "leaflet";
 
 const icon = leaflet.icon({
+  // замени icon на ICON -- (попробовала, выводит какую-то ошибку 404,что не находит изображения,поменяла как  было )
   iconUrl: `/img/pin.svg`,
   iconSize: [30, 30],
 });
 
+const ACTIVE_ICON = {
+  iconUrl: `/img/pin-active.svg`,
+  iconSize: [27, 39],
+};
+
 class Map extends PureComponent {
   constructor(props) {
     super(props);
+
+    this._markers = {};
   }
   componentDidMount() {
-    const city = [52.38333, 4.9];
-    const zoom = 12;
+    const location = this.props.offers[0].city.location;
+    const city = [location.latitude, location.longitude];
+    const zoom = location.zoom;
     this._map = leaflet.map(`map`, {
       center: city,
       zoom,
@@ -32,29 +41,54 @@ class Map extends PureComponent {
       )
       .addTo(this._map);
 
-    let markers = [];
-    this.props.offers.forEach((elem) => {
-      const marker = leaflet.marker(elem.coordinates, {icon});
-      markers.push(marker);
-
-      this._markersLayer = leaflet.layerGroup(markers);
-      this._markersLayer.addTo(this._map);
-    });
+    this._handleMapCenterSet();
+    this._handleMarkersRender();
+    this._handleActiveMarkerRender();
   }
 
   componentDidUpdate() {
-    this._markersLayer.clearLayers();
-    this._markersLayer = null;
+    this._handleMarkersRemove();
+    this._handleMapCenterSet();
+    this._handleMarkersRender();
+    this._handleActiveMarkerRender();
+  }
 
+  _handleMapCenterSet() {
+    const location = this.props.offers[0].city.location;
+    const city = [location.latitude, location.longitude];
+    const zoom = location.zoom;
+
+    this._map.setView(city, zoom);
+  }
+
+  _handleMarkersRender() {
     let markers = [];
     this.props.offers.forEach((elem) => {
       const marker = leaflet.marker(elem.coordinates, {icon});
+      this._markers[elem.id] = marker;
       markers.push(marker);
 
       this._markersLayer = leaflet.layerGroup(markers);
       this._markersLayer.addTo(this._map);
     });
   }
+
+  _handleActiveMarkerRender() {
+    const {activeItem} = this.props;
+    if (!activeItem) {
+      return;
+    }
+    if (this._markers[activeItem] !== undefined) {
+      this._markers[activeItem].setIcon(leaflet.icon(ACTIVE_ICON));
+    }
+  }
+
+  _handleMarkersRemove() {
+    this._markersLayer.clearLayers();
+    this._markersLayer = null;
+    this._markers = {};
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -66,6 +100,7 @@ class Map extends PureComponent {
 
 Map.propTypes = {
   offers: PropTypes.array.isRequired,
+  activeItem: PropTypes.number,
 };
 
 export default Map;

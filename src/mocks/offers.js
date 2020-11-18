@@ -5,6 +5,11 @@ export default [
   {
     id: 1,
     city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
       name: `Amsterdam`,
     },
     coordinates: [52.3909553943508, 4.85309666406198],
@@ -38,6 +43,11 @@ export default [
   {
     id: 2,
     city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
       name: `Amsterdam`,
     },
     coordinates: [52.3909553943508, 4.85309666406198],
@@ -62,6 +72,11 @@ export default [
   {
     id: 3,
     city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
       name: `Paris`,
     },
     coordinates: [52.369553943508, 4.85309666406198],
@@ -94,6 +109,11 @@ export default [
   {
     id: 4,
     city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
       name: `Paris`,
     },
     coordinates: [52.369553943508, 4.85309666406198],
@@ -119,6 +139,11 @@ export default [
   {
     id: 5,
     city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
       name: `Paris`,
     },
     coordinates: [52.3909553943508, 4.929309666406198],
@@ -143,6 +168,11 @@ export default [
   {
     id: 6,
     city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
       name: `Cologne`,
     },
     coordinates: [52.3909553943508, 4.929309666406198],
@@ -167,6 +197,11 @@ export default [
   {
     id: 7,
     city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
       name: `Cologne`,
     },
     coordinates: [52.3809553943508, 4.939309666406198],
@@ -191,6 +226,11 @@ export default [
   {
     id: 8,
     city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
       name: `Brussels`,
     },
     coordinates: [52.3809553943508, 4.939309666406198],
@@ -215,6 +255,11 @@ export default [
   {
     id: 9,
     city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
       name: `Dusseldorf`,
     },
     coordinates: [52.3809553943508, 4.939309666406198],
@@ -239,6 +284,11 @@ export default [
   {
     id: 10,
     city: {
+      location: {
+        latitude: 52.370216,
+        longitude: 4.895168,
+        zoom: 10,
+      },
       name: `Hamburg`,
     },
     coordinates: [52.3809553943508, 4.939309666406198],
