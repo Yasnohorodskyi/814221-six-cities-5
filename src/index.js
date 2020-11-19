@@ -1,26 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app";
-import offers from "./mocks/offers";
 
-import {createStore} from "redux";
+import {createStore, applyMiddleware} from "redux";
 import {Provider} from "react-redux";
 import {reducer} from "./store/reducer";
+import thunk from "redux-thunk";
+import {createAPI} from "../src/services/api";
+import {fetchOffers} from "./store/api-actions";
 
+const api = createAPI();
 const Settings = {
   NUMBER_OFFERS: 3,
 };
 
 const store = createStore(
     reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__
-      ? window.__REDUX_DEVTOOLS_EXTENSION__()
-      : (f) => f
+    applyMiddleware(thunk.withExtraArgument(api))
 );
-
-ReactDOM.render(
-    <Provider store={store}>
-      <App offersNumber={Settings.NUMBER_OFFERS} offers={offers} />,
-    </Provider>,
-    document.querySelector(`#root`)
-);
+Promise.all([store.dispatch(fetchOffers())]).then(() => {
+  ReactDOM.render(
+      <Provider store={store}>
+        <App offersNumber={Settings.NUMBER_OFFERS} />,
+      </Provider>,
+      document.querySelector(`#root`)
+  );
+});

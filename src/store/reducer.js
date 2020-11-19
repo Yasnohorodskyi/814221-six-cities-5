@@ -1,12 +1,11 @@
 import {extend} from "../utils/common";
 import {ActionType} from "../store/action";
-import offers from "../mocks/offers";
 
 const initialState = {
   city: `Paris`,
-  offersAll: offers,
+  offersAll: [],
   sortType: `Popular`,
-  activeCard: offers[0],
+  activeCard: {},
 };
 
 export const reducer = (state = initialState, action) => {
@@ -31,6 +30,10 @@ export const reducer = (state = initialState, action) => {
     case ActionType.SET_ACTIVE_CARD:
       return extend(state, {
         activeCard: action.payload,
+      });
+    case ActionType.LOAD_OFFERS:
+      return extend(state, {
+        offersAll: action.payload,
       });
   }
   return state;

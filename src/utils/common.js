@@ -24,3 +24,36 @@ export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
+export const adaptOffer = (offer) => {
+  const adaptedOffer = {
+    id: offer.id,
+    previewImage: offer.preview_image,
+    isPremium: offer.is_premium,
+    isFavourite: offer.is_favourite,
+    price: offer.price,
+    title: offer.title,
+    guests: offer.max_adults,
+    bedrooms: offer.bedrooms,
+    description: offer.description,
+    facilities: offer.goods,
+    images: offer.images > 6 ? offer.images.slice(0, 6) : offer.images,
+    host: {
+      id: offer.host.id,
+      isPro: offer.host.is_pro,
+      name: offer.host.name,
+      avatar: offer.host.avatar_url,
+    },
+    locationCoordinates: [offer.location.latitude, offer.location.longitude],
+    locationZoom: offer.location.zoom,
+    cityName: offer.city.name,
+    cityCoordinates: [
+      offer.city.location.latitude,
+      offer.city.location.longitude,
+    ],
+    cityZoom: offer.city.location.zoom,
+    type: offer.type,
+    rating: offer.rating,
+  };
+
+  return adaptedOffer;
+};

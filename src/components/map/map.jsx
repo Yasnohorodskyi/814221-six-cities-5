@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import "leaflet/dist/leaflet.css";
 import leaflet from "leaflet";
+import {adaptOffer} from "../../utils/common";
 
 const icon = leaflet.icon({
   // замени icon на ICON -- (попробовала, выводит какую-то ошибку 404,что не находит изображения,поменяла как  было )
@@ -21,9 +22,9 @@ class Map extends PureComponent {
     this._markers = {};
   }
   componentDidMount() {
-    const location = this.props.offers[0].city.location;
-    const city = [location.latitude, location.longitude];
-    const zoom = location.zoom;
+    const offer = adaptOffer(this.props.offers[0]);
+    const city = offer.cityCoordinates;
+    const zoom = offer.cityZoom;
     this._map = leaflet.map(`map`, {
       center: city,
       zoom,
@@ -54,9 +55,9 @@ class Map extends PureComponent {
   }
 
   _handleMapCenterSet() {
-    const location = this.props.offers[0].city.location;
-    const city = [location.latitude, location.longitude];
-    const zoom = location.zoom;
+    const offer = adaptOffer(this.props.offers[0]);
+    const city = offer.cityCoordinates;
+    const zoom = offer.cityZoom;
 
     this._map.setView(city, zoom);
   }
@@ -64,7 +65,7 @@ class Map extends PureComponent {
   _handleMarkersRender() {
     let markers = [];
     this.props.offers.forEach((elem) => {
-      const marker = leaflet.marker(elem.coordinates, {icon});
+      const marker = leaflet.marker(adaptOffer(elem).locationCoordinates, {icon});
       this._markers[elem.id] = marker;
       markers.push(marker);
 
