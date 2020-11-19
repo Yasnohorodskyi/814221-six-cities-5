@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
 
 const SortingMethods = ({changeSortType, sortType}) => {
-  let [opened, setOpened] = useState(true);
+  const [opened, setOpened] = useState(true);
 
   const sortTypes = [
     `Popular`,
@@ -72,6 +72,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+
   changeSortType(sortType) {
     dispatch(ActionCreator.changeSortType(sortType));
   },

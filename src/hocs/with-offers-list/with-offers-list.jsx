@@ -1,36 +1,35 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../store/action";
 
 const withOffersList = (Component) => {
-  class WithOffersList extends PureComponent {
-    constructor(props) {
-      super(props);
-      this.state = {
-        activeCard: 0,
-      };
-      this.onCardHover = this.onCardHover.bind(this);
-    }
-
-    onCardHover(id) {
-      const offers = this.props.offers;
+  const WithOffersList = (props) => {
+    const onCardHover = (id) => {
+      const offers = props.offers;
       const currentOffer = offers.find((off) => {
         return off.id === id;
       });
-      this.setState({
-        activeCard: currentOffer,
-      });
-    }
-    render() {
-      return (
-        <Component {...this.props} onCardHover={this.onCardHover}></Component>
-      );
-    }
-  }
+      props.setActiveCard(currentOffer);
+    };
+
+    return <Component {...props} onCardHover={onCardHover}></Component>;
+  };
 
   WithOffersList.propTypes = {
     offers: PropTypes.array.isRequired,
+    setActiveCard: PropTypes.func.isRequired,
   };
-  return WithOffersList;
+  const mapStateToProps = (state) => ({
+    activeCard: state.activeCard,
+  });
+  const mapDispatchToProps = (dispatch) => ({
+    setActiveCard(activeCard) {
+      dispatch(ActionCreator.setActiveCard(activeCard));
+    },
+  });
+
+  return connect(mapStateToProps, mapDispatchToProps)(WithOffersList);
 };
 
 export default withOffersList;

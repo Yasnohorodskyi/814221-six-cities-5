@@ -8,6 +8,7 @@ import Map from "../map/map";
 import offers from "../../mocks/offers";
 import withOffersList from "../../hocs/with-offers-list/with-offers-list";
 import Offers from "../offers-list/offers-list";
+import {Link} from "react-router-dom";
 const OffersList = withOffersList(Offers);
 
 
@@ -36,7 +37,7 @@ const Room = (props) => {
           <div className="container">
             <div className="header__wrapper">
               <div className="header__left">
-                <a className="header__logo-link" href="main.html">
+                <Link to="/" className="header__logo-link" href="main.html">
                   <img
                     className="header__logo"
                     src="/img/logo.svg"
@@ -44,7 +45,7 @@ const Room = (props) => {
                     width="81"
                     height="41"
                   />
-                </a>
+                </Link>
               </div>
               <nav className="header__nav">
                 <ul className="header__nav-list">
