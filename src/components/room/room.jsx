@@ -3,33 +3,30 @@ import Facilities from "../facitilies/facilities";
 import PropTypes from "prop-types";
 import SendCommentForm from "../send-comment-form/send-comment-form";
 import withSendCommentForm from "../../hocs/with-sent-comment-form/with-sent-comment-form ";
-import ReviewsList from "../reviews-list/reviews-list";
-import Map from "../map/map";
-import offers from "../../mocks/offers";
-import withOffersList from "../../hocs/with-offers-list/with-offers-list";
-import Offers from "../offers-list/offers-list";
+// import ReviewsList from "../reviews-list/reviews-list";
+// import Map from "../map/map";
+// import withOffersList from "../../hocs/with-offers-list/with-offers-list";
+// import Offers from "../offers-list/offers-list";
 import {Link} from "react-router-dom";
-const OffersList = withOffersList(Offers);
-
+// import OffersList from "../offers-list/offers-list";
+// const OffersList = withOffersList(Offers);
 
 const SendCommForm = withSendCommentForm(SendCommentForm);
 const Room = (props) => {
   const {offer} = props;
   const {
-    img,
-    premium,
+    images,
+    isPremium,
     price,
     title,
-    info,
+    description,
     type,
-    rate,
+    rating,
     bedrooms,
     guests,
     facilities,
-    owner,
-    comments,
+    host,
   } = offer;
-
   return (
     <React.Fragment>
       <div className="page">
@@ -70,53 +67,22 @@ const Room = (props) => {
           <section className="property">
             <div className="property__gallery-container container">
               <div className="property__gallery">
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="/img/room.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="/img/apartment-01.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src={img}
-                    alt="Photo studio"
-                  />
-                </div>
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="/img/apartment-03.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="/img/studio-01.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
-                <div className="property__image-wrapper">
-                  <img
-                    className="property__image"
-                    src="/img/apartment-01.jpg"
-                    alt="Photo studio"
-                  />
-                </div>
+                {images.map((image, index) => {
+                  return (
+                    <div className="property__image-wrapper" key={index}>
+                      <img
+                        className="property__image"
+                        src={image}
+                        alt="Photo studio"
+                      />
+                    </div>
+                  );
+                })}
               </div>
             </div>
             <div className="property__container container">
               <div className="property__wrapper">
-                {premium && (
+                {isPremium && (
                   <div className="property__mark">
                     <span>Premium</span>
                   </div>
@@ -143,7 +109,7 @@ const Room = (props) => {
                     <span className="visually-hidden">Rating</span>
                   </div>
                   <span className="property__rating-value rating__value">
-                    {rate}
+                    {rating}
                   </span>
                 </div>
                 <ul className="property__features">
@@ -151,10 +117,10 @@ const Room = (props) => {
                     {type}
                   </li>
                   <li className="property__feature property__feature--bedrooms">
-                    {bedrooms}
+                    {bedrooms} bedrooms
                   </li>
                   <li className="property__feature property__feature--adults">
-                    {guests}
+                    {guests} guests
                   </li>
                 </ul>
                 <div className="property__price">
@@ -171,30 +137,30 @@ const Room = (props) => {
                     <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
                       <img
                         className="property__avatar user__avatar"
-                        src={owner.photo}
+                        src={`/` + host.avatar}
                         width="74"
                         height="74"
                         alt="Host avatar"
                       />
                     </div>
-                    <span className="property__user-name">{owner.name}</span>
+                    <span className="property__user-name">{host.name}</span>
                   </div>
                   <div className="property__description">
-                    <p className="property__text">{info}</p>
+                    <p className="property__text">{description}</p>
                   </div>
                 </div>
                 <section className="property__reviews reviews">
                   <h2 className="reviews__title">
                     Reviews &middot;{` `}
-                    <span className="reviews__amount">{comments.length}</span>
+                    <span className="reviews__amount">0</span>
                   </h2>
-                  <ReviewsList reviews={comments}></ReviewsList>
+                  {/* <ReviewsList reviews={comments}></ReviewsList> */}
                   <SendCommForm></SendCommForm>
                 </section>
               </div>
             </div>
-            <section className="property__map map">
-              <Map offers={offers.slice(0, 3)}></Map>
+            <section className="property__mofferap map">
+              {/* <Map offers={}></Map> */}
             </section>
           </section>
           <div className="container">
@@ -203,12 +169,12 @@ const Room = (props) => {
                 Other places in the neighbourhood
               </h2>
               <div className="near-places__list places__list">
-                <OffersList
+                {/* <OffersList
                   offers={offers}
                   styleCardClass="near-places__card"
                   styleImgClass="near-places__image-wrapper"
                   numberOfOffers = {3}
-                ></OffersList>
+                ></OffersList> */}
               </div>
             </section>
           </div>
@@ -219,22 +185,22 @@ const Room = (props) => {
 };
 Room.propTypes = {
   offer: PropTypes.shape({
+    images: PropTypes.array.isRequired,
+    facilities: PropTypes.array.isRequired,
     id: PropTypes.number.isRequired,
-    img: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    premium: PropTypes.bool.isRequired,
-    rate: PropTypes.number.isRequired,
-    facilities: PropTypes.array.isRequired,
-    info: PropTypes.string.isRequired,
-    guests: PropTypes.string.isRequired,
-    comments: PropTypes.array.isRequired,
-    bedrooms: PropTypes.string.isRequired,
-    owner: PropTypes.shape({
-      photo: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    rating: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    guests: PropTypes.number.isRequired,
+    bedrooms: PropTypes.number.isRequired,
+    host: PropTypes.shape({
+      avatar: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      super: PropTypes.bool.isRequired,
+      isPro: PropTypes.bool.isRequired,
+      id: PropTypes.number,
     }),
   }).isRequired,
 };

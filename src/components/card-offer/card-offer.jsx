@@ -11,14 +11,15 @@ const CardOffer = (props) => {
     styleImgClass,
     styleInfoClass,
   } = props;
-  const {price, img, title, type, premium, id} = offer;
+  const {price, title, type, id, previewImage, isPremium} = offer;
+
   return (
     <article
       className={styleCardClass + ` ` + `place-card`}
       dataid={id}
       onMouseOver={onHover}
     >
-      {premium === true && (
+      {isPremium === true && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
@@ -27,7 +28,7 @@ const CardOffer = (props) => {
         <Link to={`/offer/` + id}>
           <img
             className="place-card__image"
-            src={img}
+            src={previewImage}
             width="260"
             height="200"
             alt="Place image"
@@ -72,11 +73,11 @@ CardOffer.propTypes = {
   onHover: PropTypes.func.isRequired,
   offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    img: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    premium: PropTypes.bool.isRequired,
+    isPremium: PropTypes.bool.isRequired,
   }).isRequired,
   styleCardClass: PropTypes.string.isRequired,
   styleImgClass: PropTypes.string.isRequired,

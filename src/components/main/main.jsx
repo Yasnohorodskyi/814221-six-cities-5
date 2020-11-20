@@ -51,6 +51,5 @@ const Main = ({offersNumber}) => {
 
 Main.propTypes = {
   offersNumber: PropTypes.number,
-  offers: PropTypes.array,
 };
 export default Main;
