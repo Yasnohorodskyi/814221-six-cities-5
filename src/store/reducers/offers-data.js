@@ -3,6 +3,7 @@ const {ActionType} = require(`../action`);
 
 const initialState = {
   offersAll: [],
+  commentsByOffer: [],
 };
 
 const offersData = (state = initialState, action) => {

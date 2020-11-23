@@ -37,6 +37,7 @@ class Room extends PureComponent {
       guests,
       facilities,
       host,
+      id,
     } = this.offer;
     return (
       <React.Fragment>
@@ -165,12 +166,12 @@ class Room extends PureComponent {
                   <section className="property__reviews reviews">
                     <h2 className="reviews__title">
                       Reviews &middot;{` `}
-                      <span className="reviews__amount">0</span>
+                      <span className="reviews__amount">{this.props.commentsByOffer.length}</span>
                     </h2>
                     <ReviewsList
                       reviews={this.props.commentsByOffer}
                     ></ReviewsList>
-                    <SendCommForm></SendCommForm>
+                    <SendCommForm id={id}></SendCommForm>
                   </section>
                 </div>
               </div>

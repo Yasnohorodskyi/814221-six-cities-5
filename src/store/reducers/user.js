@@ -1,7 +1,8 @@
+import {AuthorisationCodes} from "../../const";
 import {ActionType} from "../action";
 
 const initialState = {
-  authorizationStatus: `NO_AUTH`,
+  authorizationStatus: AuthorisationCodes.NO_AUTH,
 };
 
 const user = (state = initialState, action) => {

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import CitiesList from "../cities-list/cities-list";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import {AuthorisationCodes} from "../../const";
 
 const Main = ({offersNumber, authorizationStatus}) => {
   return (
@@ -25,7 +26,7 @@ const Main = ({offersNumber, authorizationStatus}) => {
               <nav className="header__nav">
                 <ul className="header__nav-list">
                   <li className="header__nav-item user">
-                    {authorizationStatus === `AUTH` ? (
+                    {authorizationStatus === AuthorisationCodes.AUTH ? (
                       <Link
                         to="/favorites"
                         className="header__nav-link header__nav-link--profile"
