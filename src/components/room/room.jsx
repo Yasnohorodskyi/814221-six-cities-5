@@ -8,7 +8,6 @@ import ReviewsList from "../reviews-list/reviews-list";
 // import withOffersList from "../../hocs/with-offers-list/with-offers-list";
 // import Offers from "../offers-list/offers-list";
 import {Link} from "react-router-dom";
-import {render} from "react-dom";
 import {fetchCommentsByOffer} from "../../store/api-actions";
 import {connect} from "react-redux";
 // import OffersList from "../offers-list/offers-list";
@@ -221,6 +220,8 @@ Room.propTypes = {
       id: PropTypes.number,
     }),
   }).isRequired,
+  fetchCommentsByOffer: PropTypes.func.isRequired,
+  commentsByOffer: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = ({DATA}) => ({
