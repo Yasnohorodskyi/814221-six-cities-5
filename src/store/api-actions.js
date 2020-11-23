@@ -4,8 +4,6 @@ export const fetchOffers = () => (dispatch, _getState, api) =>
   api
     .get(`/hotels`)
     .then(({data}) => dispatch(ActionCreator.loadOffers(data)));
-<<<<<<< Updated upstream
-=======
 
 export const checkAuth = () => (dispatch, _getState, api) =>
   api
@@ -29,4 +27,3 @@ export const fetchCommentsByOffer = (id) => (dispatch, _getState, api) =>
   api
     .get(`/comments/: hotel_ ${id}`)
     .then(({data}) => dispatch(ActionCreator.loadCommentsByOffer(data)));
->>>>>>> Stashed changes

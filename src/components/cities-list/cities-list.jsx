@@ -86,11 +86,10 @@ CitiesList.propTypes = {
 
 const mapStateToProps = (state) => ({
   offersCity: getSortedOffers(state),
-  offersAll: state.offersAll,
-  city: state.city,
-  sortType: state.sortType,
-  activeCard: state.activeCard,
-
+  offersAll: state.DATA.offersAll,
+  city: state.STATE.city,
+  sortType: state.STATE.sortType,
+  activeCard: state.STATE.activeCard,
 });
 
 const mapDispatchToProps = (dispatch) => ({

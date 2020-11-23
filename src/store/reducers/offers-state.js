@@ -1,14 +1,13 @@
-import {extend} from "../utils/common";
-import {ActionType} from "../store/action";
+import {extend} from "../../utils/common";
+import {ActionType} from "../../store/action";
 
 const initialState = {
   city: `Paris`,
-  offersAll: [],
   sortType: `Popular`,
   activeCard: {},
 };
 
-export const reducer = (state = initialState, action) => {
+export const offerState = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_CITY:
       return extend(state, {
@@ -30,10 +29,6 @@ export const reducer = (state = initialState, action) => {
     case ActionType.SET_ACTIVE_CARD:
       return extend(state, {
         activeCard: action.payload,
-      });
-    case ActionType.LOAD_OFFERS:
-      return extend(state, {
-        offersAll: action.payload,
       });
   }
   return state;

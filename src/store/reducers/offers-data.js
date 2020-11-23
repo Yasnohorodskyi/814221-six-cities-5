@@ -6,6 +6,7 @@ const initialState = {
 };
 
 const offersData = (state = initialState, action) => {
+
   switch (action.type) {
     case ActionType.LOAD_OFFERS:
       return extend(state, {

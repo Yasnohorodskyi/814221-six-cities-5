@@ -4,12 +4,9 @@ export const ActionType = {
   CHANGE_SORT_TYPE: `CHANGE_SORT_TYPE`,
   SET_ACTIVE_CARD: `SET_ACTIVE_CARD`,
   LOAD_OFFERS: `LOAD_OFFERS`,
-<<<<<<< Updated upstream
-=======
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   LOAD_COMMENTS_BY_OFFER: `LOAD_COMMENTS_BY_OFFER`,
->>>>>>> Stashed changes
 };
 
 export const ActionCreator = {
@@ -35,8 +32,6 @@ export const ActionCreator = {
     type: ActionType.LOAD_OFFERS,
     payload: offers,
   }),
-<<<<<<< Updated upstream
-=======
 
   requiredAuthorization: (status) => ({
     type: ActionType.REQUIRED_AUTHORIZATION,
@@ -52,5 +47,4 @@ export const ActionCreator = {
     type: ActionType.LOAD_COMMENTS_BY_OFFER,
     payload: comments,
   })
->>>>>>> Stashed changes
 };

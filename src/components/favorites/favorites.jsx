@@ -57,7 +57,7 @@ const Favorites = ({offers}) => {
                   </div>
                   <div className="favorites__places">
                     <OffersList
-                      offers={offers.slice(0, 3)}
+                      offers={offers.slice(0, 2)}
                       styleCardClass="favorites__card"
                       styleImgClass="favorites__image-wrapper"
                       styleInfoClass="favorites__card-info"

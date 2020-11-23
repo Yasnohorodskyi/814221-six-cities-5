@@ -20,8 +20,8 @@ const withOffersList = (Component) => {
     offers: PropTypes.array.isRequired,
     setActiveCard: PropTypes.func.isRequired,
   };
-  const mapStateToProps = (state) => ({
-    activeCard: state.activeCard,
+  const mapStateToProps = ({STATE}) => ({
+    activeCard: STATE.activeCard,
   });
   const mapDispatchToProps = (dispatch) => ({
     setActiveCard(activeCard) {

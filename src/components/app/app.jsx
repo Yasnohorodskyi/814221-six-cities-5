@@ -1,16 +1,19 @@
 import React from "react";
 import Main from "../main/main";
 import PropTypes from "prop-types";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {Router as BrowserRouter, Switch, Route} from "react-router-dom";
 import Favorites from "../favorites/favorites";
 import Room from "../room/room";
 import SignIn from "../sign-in/sign-in";
 import {connect} from "react-redux";
 import {adaptOffer} from "../../utils/common";
+import PrivateRoute from "../private-route/private-route";
+import browserHistory from "../../browser-history";
 
 const App = ({offersNumber, offersAll}) => {
+
   return (
-    <BrowserRouter>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path="/">
           <Main offersNumber={offersNumber} offers={offersAll} />
@@ -18,9 +21,13 @@ const App = ({offersNumber, offersAll}) => {
         <Route exact path="/login">
           <SignIn />
         </Route>
-        <Route exact path="/favorites">
-          <Favorites offers={offersAll} />
-        </Route>
+        <PrivateRoute
+          exact
+          path={`/favorites`}
+          render={() => {
+            return <Favorites offers={offersAll} />;
+          }}
+        ></PrivateRoute>
         <Route
           exact
           path="/offer/:id"
@@ -46,8 +53,8 @@ App.propTypes = {
   offersAll: PropTypes.array,
 };
 
-const mapStateToProps = (state) => ({
-  offersAll: state.offersAll,
+const mapStateToProps = ({DATA}) => ({
+  offersAll: DATA.offersAll,
 });
 
 export default connect(mapStateToProps)(App);

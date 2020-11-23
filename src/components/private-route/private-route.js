@@ -4,7 +4,6 @@ import {Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 
 
-
 const PrivateRoute = (props) => {
 
   const {render, path, exact, authorizationStatus} = props;
@@ -33,6 +32,5 @@ PrivateRoute.propTypes = {
 const mapStateToProps = (state) => ({
   authorizationStatus: state.USER.authorizationStatus,
 });
-
 
 export default connect(mapStateToProps)(PrivateRoute);
