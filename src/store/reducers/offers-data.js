@@ -5,6 +5,7 @@ const initialState = {
   offersAll: [],
   commentsByOffer: [],
   offersCity: [],
+  favoriteOffers: [],
 };
 
 const offersData = (state = initialState, action) => {
@@ -17,6 +18,11 @@ const offersData = (state = initialState, action) => {
     case ActionType.LOAD_COMMENTS_BY_OFFER:
       return extend(state, {
         commentsByOffer: action.payload,
+      });
+
+    case ActionType.LOAD_FAVORITE_OFFERS:
+      return extend(state, {
+        favoriteOffers: action.payload,
       });
   }
   return state;

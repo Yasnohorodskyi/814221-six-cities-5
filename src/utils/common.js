@@ -29,7 +29,7 @@ export const adaptOffer = (offer) => {
     id: offer.id,
     previewImage: offer.preview_image,
     isPremium: offer.is_premium,
-    isFavourite: offer.is_favourite,
+    isFavorite: offer.is_favorite,
     price: offer.price,
     title: offer.title,
     guests: offer.max_adults,

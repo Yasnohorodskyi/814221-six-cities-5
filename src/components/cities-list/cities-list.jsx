@@ -94,6 +94,7 @@ const mapStateToProps = (state) => ({
   city: state.STATE.city,
   sortType: state.STATE.sortType,
   activeCard: state.STATE.activeCard,
+
 });
 
 const mapDispatchToProps = (dispatch) => ({

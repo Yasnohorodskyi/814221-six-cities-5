@@ -10,8 +10,7 @@ import {adaptOffer} from "../../utils/common";
 import PrivateRoute from "../private-route/private-route";
 import browserHistory from "../../browser-history";
 
-const App = ({offersNumber, offersAll}) => {
-
+const App = ({offersNumber, offersAll, favoriteOffers}) => {
   return (
     <BrowserRouter history={browserHistory}>
       <Switch>
@@ -25,7 +24,7 @@ const App = ({offersNumber, offersAll}) => {
           exact
           path={`/favorites`}
           render={() => {
-            return <Favorites offers={offersAll} />;
+            return <Favorites offers={favoriteOffers} />;
           }}
         ></PrivateRoute>
         <Route
@@ -51,10 +50,12 @@ const App = ({offersNumber, offersAll}) => {
 App.propTypes = {
   offersNumber: PropTypes.number,
   offersAll: PropTypes.array,
+  favoriteOffers: PropTypes.array,
 };
 
-const mapStateToProps = ({DATA}) => ({
-  offersAll: DATA.offersAll,
+const mapStateToProps = (state) => ({
+  offersAll: state.DATA.offersAll,
+  favoriteOffers: state.DATA.favoriteOffers,
 });
 
 export default connect(mapStateToProps)(App);
