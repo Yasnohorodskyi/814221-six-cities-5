@@ -3,6 +3,7 @@ import Offers from "../offers-list/offers-list";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import withOffersList from "../../hocs/with-offers-list/with-offers-list";
+import {numberOfFavouritesOffers} from "../../const";
 const OffersList = withOffersList(Offers);
 
 const Favorites = ({offers}) => {
@@ -57,7 +58,7 @@ const Favorites = ({offers}) => {
                   </div>
                   <div className="favorites__places">
                     <OffersList
-                      offers={offers.slice(0, 2)}
+                      offers={offers.slice(0, numberOfFavouritesOffers)}
                       styleCardClass="favorites__card"
                       styleImgClass="favorites__image-wrapper"
                       styleInfoClass="favorites__card-info"

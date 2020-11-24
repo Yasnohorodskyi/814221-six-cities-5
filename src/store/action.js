@@ -6,6 +6,7 @@ export const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
+  LOAD_COMMENTS_BY_OFFER: `LOAD_COMMENTS_BY_OFFER`,
 };
 
 export const ActionCreator = {
@@ -41,4 +42,9 @@ export const ActionCreator = {
     type: ActionType.REDIRECT_TO_ROUTE,
     payload: url,
   }),
+
+  loadCommentsByOffer: (comments) => ({
+    type: ActionType.LOAD_COMMENTS_BY_OFFER,
+    payload: comments,
+  })
 };
