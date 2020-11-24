@@ -8,10 +8,11 @@ import Map from "../map/map";
 import cn from "classnames";
 import SortingMethods from "../sorting-methods/sorting-methods";
 import {getSortedOffers} from "../../store/selectors/get-filter-offers";
+import MainEmpty from "../main-empty/main-empty";
 
 const OffersList = withOffersList(Offers);
 const CitiesList = (props) => {
-  const onClick = (evt)=> {
+  const onClick = (evt) => {
     const {changeCity} = props;
     const currentCity = evt.target.textContent.toString();
     changeCity(currentCity);
@@ -50,30 +51,33 @@ const CitiesList = (props) => {
         </section>
       </div>
       <div className="cities">
-        <div className="cities__places-container container">
-          <section className="cities__places places">
-            <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">
-              {offersCity.length} places to stay in {city}
-            </b>
-            <SortingMethods/>
-            <OffersList
-              offers={offersCity}
-              styleCardClass="cities__place-card"
-              styleImgClass="cities__image-wrapper"
-            />
-          </section>
-          <div className="cities__right-section">
-            <section className="cities__map map">
-              <Map offers={offersCity} activeItem = {props.activeCard.id}></Map>
+        {offersCity.length !== 0 ? (
+          <div className="cities__places-container container">
+            <section className="cities__places places">
+              <h2 className="visually-hidden">Places</h2>
+              <b className="places__found">
+                {offersCity.length} places to stay in {city}
+              </b>
+              <SortingMethods />
+              <OffersList
+                offers={offersCity}
+                styleCardClass="cities__place-card"
+                styleImgClass="cities__image-wrapper"
+              />
             </section>
+            <div className="cities__right-section">
+              <section className="cities__map map">
+                <Map offers={offersCity} activeItem={props.activeCard.id}></Map>
+              </section>
+            </div>
           </div>
-        </div>
+        ) : (
+          <MainEmpty city={city}></MainEmpty>
+        )}
       </div>
     </React.Fragment>
   );
 };
-
 
 CitiesList.propTypes = {
   offersNumber: PropTypes.number,
@@ -81,7 +85,7 @@ CitiesList.propTypes = {
   offersAll: PropTypes.array.isRequired,
   city: PropTypes.string.isRequired,
   changeCity: PropTypes.func.isRequired,
-  activeCard: PropTypes.object.isRequired
+  activeCard: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -99,7 +103,6 @@ const mapDispatchToProps = (dispatch) => ({
   resetOffers() {
     dispatch(ActionCreator.resetOffers());
   },
-
 });
 
 export {CitiesList};
