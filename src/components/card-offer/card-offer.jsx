@@ -27,7 +27,7 @@ const CardOffer = (props) => {
       id,
     });
     setFavorite(!isFav);
-    if ((isFav) === false) {
+    if ((isFav) === true) {
       addToFavoriteOffers();
     }
 

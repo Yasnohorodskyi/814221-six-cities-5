@@ -54,4 +54,4 @@ export const changeFavoriteStatus = ({id, status}) => (
 ) =>
   api
     .post(`/favorite/${id}/${status}`, status)
-    .then(fetchFavoriteOffers);
+    .then(dispatch(fetchFavoriteOffers()));
