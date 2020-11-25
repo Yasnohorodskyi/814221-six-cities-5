@@ -55,7 +55,7 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   offersAll: state.DATA.offersAll,
-  favoriteOffers: state.DATA.favoriteOffers,
+  favoriteOffers: state.STATE.favoriteOffers,
 });
 
 export default connect(mapStateToProps)(App);

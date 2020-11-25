@@ -14,6 +14,7 @@ const OffersList = ({
   offers = numberOfOffers ? offers.slice(0, numberOfOffers) : offers;
   const offersList = offers.map((offer) => {
     const adOffer = adaptOffer(offer);
+
     return (
       <CardOffer
         id={adOffer.id}

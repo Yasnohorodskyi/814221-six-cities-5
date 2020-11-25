@@ -2,8 +2,11 @@ import React, {useState} from "react";
 import PropTypes from "prop-types";
 import {Link, withRouter} from "react-router-dom";
 import cn from "classnames";
-import {changeFavoriteStatus, fetchFavoriteOffers} from "../../store/api-actions";
+import {
+  changeFavoriteStatus,
+} from "../../store/api-actions";
 import {connect} from "react-redux";
+import {ActionCreator} from "../../store/action";
 
 const CardOffer = (props) => {
   const {
@@ -13,17 +16,22 @@ const CardOffer = (props) => {
     styleImgClass,
     styleInfoClass,
     onFavButtonClick,
+    addToFavoriteOffers,
   } = props;
   const {price, title, type, id, previewImage, isPremium, isFavorite} = offer;
 
   const [isFav, setFavorite] = useState(isFavorite);
   const handleAddToFavorite = () => {
-
-    setFavorite(false);
     onFavButtonClick({
-      status: isFav === true ? 1 : 0,
+      status: isFav === true ? 0 : 1,
       id,
     });
+    setFavorite(!isFav);
+    if ((isFav) === false) {
+      addToFavoriteOffers();
+    }
+
+
   };
   return (
     <article
@@ -86,12 +94,16 @@ const CardOffer = (props) => {
     </article>
   );
 };
+
 const mapDispatchToProps = (dispatch) => ({
   onFavButtonClick(authData) {
     dispatch(changeFavoriteStatus(authData));
-    dispatch(fetchFavoriteOffers());
-  }
+  },
+  addToFavoriteOffers(offer) {
+    dispatch(ActionCreator.addToFavoriteOffers(offer));
+  },
 });
+
 CardOffer.propTypes = {
   onHover: PropTypes.func.isRequired,
   offer: PropTypes.shape({
@@ -107,7 +119,10 @@ CardOffer.propTypes = {
   styleImgClass: PropTypes.string.isRequired,
   styleInfoClass: PropTypes.string,
   onFavButtonClick: PropTypes.func.isRequired,
+  addToFavoriteOffers: PropTypes.func.isRequired,
 };
 
-
-export default connect(null, mapDispatchToProps)(withRouter(CardOffer));
+export default connect(
+    null,
+    mapDispatchToProps
+)(withRouter(CardOffer));

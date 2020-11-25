@@ -1,12 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Offers from "../offers-list/offers-list";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import withOffersList from "../../hocs/with-offers-list/with-offers-list";
-// import {numberOfFavouritesOffers} from "../../const";
+import {fetchFavoriteOffers} from "../../store/api-actions";
 const OffersList = withOffersList(Offers);
 
 const Favorites = ({offers}) => {
+
+  useEffect(() => {
+    fetchFavoriteOffers();
+  });
+
   return (
     <React.Fragment>
       <div className="page">
@@ -65,7 +70,6 @@ const Favorites = ({offers}) => {
                     />
                   </div>
                 </li>
-
               </ul>
             </section>
           </div>
@@ -87,6 +91,6 @@ const Favorites = ({offers}) => {
 };
 
 Favorites.propTypes = {
-  offers: PropTypes.array
+  offers: PropTypes.array,
 };
 export default Favorites;
