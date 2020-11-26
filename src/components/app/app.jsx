@@ -10,7 +10,7 @@ import {adaptOffer} from "../../utils/common";
 import PrivateRoute from "../private-route/private-route";
 import browserHistory from "../../browser-history";
 
-const App = ({offersNumber, offersAll, favoriteOffers}) => {
+const App = ({offersAll, favoriteOffers}) => {
   return (
     <BrowserRouter history={browserHistory}>
       <Switch>
@@ -48,7 +48,6 @@ const App = ({offersNumber, offersAll, favoriteOffers}) => {
 };
 
 App.propTypes = {
-  offersNumber: PropTypes.number,
   offersAll: PropTypes.array,
   favoriteOffers: PropTypes.array,
 };
