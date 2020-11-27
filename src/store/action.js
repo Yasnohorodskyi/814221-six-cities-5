@@ -8,7 +8,7 @@ export const ActionType = {
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   LOAD_COMMENTS_BY_OFFER: `LOAD_COMMENTS_BY_OFFER`,
   LOAD_FAVORITE_OFFERS: `LOAD_FAVORITE_OFFERS`,
-  ADD_TO_FAVORITE_OFFERS: `ADD_TO_FAVO`
+  CHANGE_FAVORITE_OFFERS: `CHANGE_FAVORITE_OFFERS`,
 };
 
 export const ActionCreator = {
@@ -55,8 +55,8 @@ export const ActionCreator = {
     payload: offers,
   }),
 
-  addToFavoriteOffers: (offer) => ({
-    type: ActionType.ADD_TO_FAVORITE_OFFERS,
+  changeFavoriteOffers: (offer) => ({
+    type: ActionType.CHANGE_FAVORITE_OFFERS,
     payload: offer,
   })
 };

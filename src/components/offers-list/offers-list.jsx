@@ -10,6 +10,8 @@ const OffersList = ({
   styleInfoClass,
   onCardHover,
   numberOfOffers,
+  widthImg,
+  heightImg,
 }) => {
   offers = numberOfOffers ? offers.slice(0, numberOfOffers) : offers;
   const offersList = offers.map((offer) => {
@@ -23,16 +25,14 @@ const OffersList = ({
         styleCardClass={styleCardClass}
         styleImgClass={styleImgClass}
         styleInfoClass={styleInfoClass}
+        widthImg={widthImg}
+        heightImg={heightImg}
         onHover={(e) => onCardHover(adOffer.id, e)}
       />
     );
   });
 
-  return (
-    <div className="cities__places-list places__list tabs__content">
-      {offersList}
-    </div>
-  );
+  return <React.Fragment>{offersList}</React.Fragment>;
 };
 
 OffersList.propTypes = {

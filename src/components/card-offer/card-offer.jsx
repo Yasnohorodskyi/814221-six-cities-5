@@ -16,7 +16,9 @@ const CardOffer = (props) => {
     styleImgClass,
     styleInfoClass,
     onFavButtonClick,
-    addToFavoriteOffers,
+    changeFavoriteOffers,
+    widthImg,
+    heightImg,
   } = props;
   const {price, title, type, id, previewImage, isPremium, isFavorite} = offer;
 
@@ -27,11 +29,7 @@ const CardOffer = (props) => {
       id,
     });
     setFavorite(!isFav);
-    if ((isFav) === true) {
-      addToFavoriteOffers();
-    }
-
-
+    changeFavoriteOffers(offer);
   };
   return (
     <article
@@ -49,8 +47,8 @@ const CardOffer = (props) => {
           <img
             className="place-card__image"
             src={previewImage}
-            width="260"
-            height="200"
+            width={widthImg}
+            height={heightImg}
             alt="Place image"
           />
         </Link>
@@ -99,8 +97,8 @@ const mapDispatchToProps = (dispatch) => ({
   onFavButtonClick(authData) {
     dispatch(changeFavoriteStatus(authData));
   },
-  addToFavoriteOffers(offer) {
-    dispatch(ActionCreator.addToFavoriteOffers(offer));
+  changeFavoriteOffers(offer) {
+    dispatch(ActionCreator.changeFavoriteOffers(offer));
   },
 });
 
@@ -119,9 +117,12 @@ CardOffer.propTypes = {
   styleImgClass: PropTypes.string.isRequired,
   styleInfoClass: PropTypes.string,
   onFavButtonClick: PropTypes.func.isRequired,
-  addToFavoriteOffers: PropTypes.func.isRequired,
+  widthImg: PropTypes.string.isRequired,
+  heightImg: PropTypes.string.isRequired,
 };
 
+
+export {CardOffer};
 export default connect(
     null,
     mapDispatchToProps

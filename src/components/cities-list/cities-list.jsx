@@ -59,11 +59,15 @@ const CitiesList = (props) => {
                 {offersCity.length} places to stay in {city}
               </b>
               <SortingMethods />
-              <OffersList
-                offers={offersCity}
-                styleCardClass="cities__place-card"
-                styleImgClass="cities__image-wrapper"
-              />
+              <div className="cities__places-list places__list tabs__content">
+                <OffersList
+                  offers={offersCity}
+                  styleCardClass="cities__place-card"
+                  styleImgClass="cities__image-wrapper"
+                  widthImg="260"
+                  heightImg="200"
+                />
+              </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
@@ -80,7 +84,6 @@ const CitiesList = (props) => {
 };
 
 CitiesList.propTypes = {
-  offersNumber: PropTypes.number,
   offersCity: PropTypes.array.isRequired,
   offersAll: PropTypes.array.isRequired,
   city: PropTypes.string.isRequired,
@@ -94,7 +97,6 @@ const mapStateToProps = (state) => ({
   city: state.STATE.city,
   sortType: state.STATE.sortType,
   activeCard: state.STATE.activeCard,
-
 });
 
 const mapDispatchToProps = (dispatch) => ({

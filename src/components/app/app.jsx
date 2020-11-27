@@ -15,7 +15,7 @@ const App = ({offersAll, favoriteOffers}) => {
     <BrowserRouter history={browserHistory}>
       <Switch>
         <Route exact path="/">
-          <Main offersNumber={offersNumber} offers={offersAll} />
+          <Main offers={offersAll} />
         </Route>
         <Route exact path="/login">
           <SignIn />
@@ -54,7 +54,7 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   offersAll: state.DATA.offersAll,
-  favoriteOffers: state.STATE.favoriteOffers,
+  favoriteOffers: state.DATA.favoriteOffers,
 });
 
 export default connect(mapStateToProps)(App);

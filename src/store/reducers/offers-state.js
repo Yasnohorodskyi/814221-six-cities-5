@@ -5,7 +5,6 @@ const initialState = {
   city: `Paris`,
   sortType: `Popular`,
   activeCard: {},
-  favoriteOffers: [],
 };
 
 export const offerState = (state = initialState, action) => {
@@ -32,10 +31,7 @@ export const offerState = (state = initialState, action) => {
         activeCard: action.payload,
       });
 
-    case ActionType.ADD_TO_FAVORITE_OFFERS:
-      return extend(state, {
-        favoriteOffers: action.payload,
-      });
+
   }
   return state;
 };

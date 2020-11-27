@@ -4,14 +4,42 @@ import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import withOffersList from "../../hocs/with-offers-list/with-offers-list";
 import {fetchFavoriteOffers} from "../../store/api-actions";
+import {connect} from "react-redux";
+import {getFavoriteSortedOffers} from "../../store/selectors/get-favorite-offers";
+import FavoriteEmpty from "../favorite-empty/favorite-empty";
+import cn from "classnames";
 const OffersList = withOffersList(Offers);
 
-const Favorites = ({offers}) => {
-
+const Favorites = ({favoriteOffers, getFavoriteOffers, sortedOffers}) => {
   useEffect(() => {
-    fetchFavoriteOffers();
-  });
-
+    getFavoriteOffers();
+  }, []);
+  console.log(favoriteOffers.length);
+  const getFavoriteItems = (offers) => {
+    return Object.entries(offers).map((item, index) => {
+      return (
+        <li className="favorites__locations-items" key={index}>
+          <div className="favorites__locations locations locations--current">
+            <div className="locations__item">
+              <a className="locations__item-link" href="#">
+                <span>{item[0]}</span>
+              </a>
+            </div>
+          </div>
+          <div className="favorites__places">
+            <OffersList
+              offers={item[1]}
+              widthImg="150"
+              heightImg="110"
+              styleCardClass="favorites__card"
+              styleImgClass="favorites__image-wrapper"
+              styleInfoClass="favorites__card-info"
+            />
+          </div>
+        </li>
+      );
+    });
+  };
   return (
     <React.Fragment>
       <div className="page">
@@ -48,30 +76,24 @@ const Favorites = ({offers}) => {
           </div>
         </header>
 
-        <main className="page__main page__main--favorites">
+        <main
+          className={cn(`page__main page__main--favorites`, {
+            "page__main--favorites-empty": sortedOffers === {},
+          })}
+        >
           <div className="page__favorites-container container">
-            <section className="favorites">
-              <h1 className="favorites__title">Saved listing</h1>
-              <ul className="favorites__list">
-                <li className="favorites__locations-items">
-                  <div className="favorites__locations locations locations--current">
-                    <div className="locations__item">
-                      <a className="locations__item-link" href="#">
-                        <span>Amsterdam</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="favorites__places">
-                    <OffersList
-                      offers={offers}
-                      styleCardClass="favorites__card"
-                      styleImgClass="favorites__image-wrapper"
-                      styleInfoClass="favorites__card-info"
-                    />
-                  </div>
-                </li>
-              </ul>
-            </section>
+            {
+              (favoriteOffers.length === 0 ? (
+                <FavoriteEmpty />
+              ) : (
+                <section className="favorites">
+                  <h1 className="favorites__title">Saved listing</h1>
+                  <ul className="favorites__list">
+                    {getFavoriteItems(sortedOffers)}
+                  </ul>
+                </section>
+              ))
+            }
           </div>
         </main>
         <footer className="footer container">
@@ -91,6 +113,17 @@ const Favorites = ({offers}) => {
 };
 
 Favorites.propTypes = {
-  offers: PropTypes.array,
+  sortedOffers: PropTypes.object,
+  getFavoriteOffers: PropTypes.func,
 };
-export default Favorites;
+const mapStateToProps = (state) => ({
+  sortedOffers: getFavoriteSortedOffers(state),
+  favoriteOffers: state.DATA.favoriteOffers,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getFavoriteOffers() {
+    dispatch(fetchFavoriteOffers());
+  },
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites);

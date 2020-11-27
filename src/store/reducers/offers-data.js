@@ -24,7 +24,15 @@ const offersData = (state = initialState, action) => {
         favoriteOffers: action.payload,
       });
 
-
+    case ActionType.CHANGE_FAVORITE_OFFERS:
+      return extend(state, {
+        offersAll: state.offersAll.map((offer) => {
+          if (offer.id === action.payload.id) {
+            offer.is_favorite = !offer.is_favorite;
+          }
+          return offer;
+        }),
+      });
   }
   return state;
 };
