@@ -2,10 +2,8 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import "leaflet/dist/leaflet.css";
 import leaflet from "leaflet";
-import {adaptOffer} from "../../utils/common";
 
 const icon = leaflet.icon({
-  // замени icon на ICON -- (попробовала, выводит какую-то ошибку 404,что не находит изображения,поменяла как  было )
   iconUrl: `/img/pin.svg`,
   iconSize: [30, 30],
 });
@@ -18,11 +16,12 @@ const ACTIVE_ICON = {
 class Map extends PureComponent {
   constructor(props) {
     super(props);
-
+    console.log(this.props);
     this._markers = {};
   }
+
   componentDidMount() {
-    const offer = adaptOffer(this.props.offers[0]);
+    const offer = this.props.offers[0];
     const city = offer.cityCoordinates;
     const zoom = offer.cityZoom;
     this._map = leaflet.map(`map`, {
@@ -55,7 +54,7 @@ class Map extends PureComponent {
   }
 
   _handleMapCenterSet() {
-    const offer = adaptOffer(this.props.offers[0]);
+    const offer = this.props.offers[0];
     const city = offer.cityCoordinates;
     const zoom = offer.cityZoom;
 
@@ -65,7 +64,7 @@ class Map extends PureComponent {
   _handleMarkersRender() {
     let markers = [];
     this.props.offers.forEach((elem) => {
-      const marker = leaflet.marker(adaptOffer(elem).locationCoordinates, {icon});
+      const marker = leaflet.marker(elem.locationCoordinates, {icon});
       this._markers[elem.id] = marker;
       markers.push(marker);
 
@@ -75,6 +74,7 @@ class Map extends PureComponent {
   }
 
   _handleActiveMarkerRender() {
+    console.log(this.props.activeItem);
     const {activeItem} = this.props;
     if (!activeItem) {
       return;

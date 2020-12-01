@@ -1,9 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SendCommentForm = ({handleSubmit, handleFieldChange}) => {
+const SendCommentForm = ({
+  handleSubmit,
+  handleFieldChange,
+  isSending,
+  sendForm,
+  formComment,
+  formRating,
+}) => {
   return (
     <form
+      ref={sendForm}
       className="reviews__form form"
       action="#"
       method="post"
@@ -109,6 +117,7 @@ const SendCommentForm = ({handleSubmit, handleFieldChange}) => {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
+        value={formComment}
       ></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
@@ -119,7 +128,7 @@ const SendCommentForm = ({handleSubmit, handleFieldChange}) => {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled=""
+          disabled={isSending ? false : true}
         >
           Submit
         </button>

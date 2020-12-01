@@ -1,12 +1,44 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Offers from "../offers-list/offers-list";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import withOffersList from "../../hocs/with-offers-list/with-offers-list";
-import {numberOfFavouritesOffers} from "../../const";
+import {fetchFavoriteOffers} from "../../store/api-actions";
+import {connect} from "react-redux";
+import {getFavoriteSortedOffers} from "../../store/selectors/get-favorite-offers";
+import FavoriteEmpty from "../favorite-empty/favorite-empty";
+import cn from "classnames";
 const OffersList = withOffersList(Offers);
 
-const Favorites = ({offers}) => {
+const Favorites = ({favoriteOffers, getFavoriteOffers, sortedOffers}) => {
+  useEffect(() => {
+    getFavoriteOffers();
+  }, []);
+  const getFavoriteItems = (offers) => {
+    return Object.entries(offers).map((item, index) => {
+      return (
+        <li className="favorites__locations-items" key={index}>
+          <div className="favorites__locations locations locations--current">
+            <div className="locations__item">
+              <a className="locations__item-link" href="#">
+                <span>{item[0]}</span>
+              </a>
+            </div>
+          </div>
+          <div className="favorites__places">
+            <OffersList
+              offers={item[1]}
+              widthImg="150"
+              heightImg="110"
+              styleCardClass="favorites__card"
+              styleImgClass="favorites__image-wrapper"
+              styleInfoClass="favorites__card-info"
+            />
+          </div>
+        </li>
+      );
+    });
+  };
   return (
     <React.Fragment>
       <div className="page">
@@ -43,90 +75,24 @@ const Favorites = ({offers}) => {
           </div>
         </header>
 
-        <main className="page__main page__main--favorites">
+        <main
+          className={cn(`page__main page__main--favorites`, {
+            "page__main--favorites-empty": sortedOffers === {},
+          })}
+        >
           <div className="page__favorites-container container">
-            <section className="favorites">
-              <h1 className="favorites__title">Saved listing</h1>
-              <ul className="favorites__list">
-                <li className="favorites__locations-items">
-                  <div className="favorites__locations locations locations--current">
-                    <div className="locations__item">
-                      <a className="locations__item-link" href="#">
-                        <span>Amsterdam</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="favorites__places">
-                    <OffersList
-                      offers={offers.slice(0, numberOfFavouritesOffers)}
-                      styleCardClass="favorites__card"
-                      styleImgClass="favorites__image-wrapper"
-                      styleInfoClass="favorites__card-info"
-                    />
-                  </div>
-                </li>
-
-                <li className="favorites__locations-items">
-                  <div className="favorites__locations locations locations--current">
-                    <div className="locations__item">
-                      <a className="locations__item-link" href="#">
-                        <span>Cologne</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="favorites__places">
-                    <article className="favorites__card place-card">
-                      <div className="favorites__image-wrapper place-card__image-wrapper">
-                        <a href="#">
-                          <img
-                            className="place-card__image"
-                            src="img/apartment-small-04.jpg"
-                            width="150"
-                            height="110"
-                            alt="Place image"
-                          />
-                        </a>
-                      </div>
-                      <div className="favorites__card-info place-card__info">
-                        <div className="place-card__price-wrapper">
-                          <div className="place-card__price">
-                            <b className="place-card__price-value">&euro;180</b>
-                            <span className="place-card__price-text">
-                              &#47;&nbsp;night
-                            </span>
-                          </div>
-                          <button
-                            className="place-card__bookmark-button place-card__bookmark-button--active button"
-                            type="button"
-                          >
-                            <svg
-                              className="place-card__bookmark-icon"
-                              width="18"
-                              height="19"
-                            >
-                              <use xlinkHref="#icon-bookmark"></use>
-                            </svg>
-                            <span className="visually-hidden">
-                              In bookmarks
-                            </span>
-                          </button>
-                        </div>
-                        <div className="place-card__rating rating">
-                          <div className="place-card__stars rating__stars">
-                            <span style={{width: `100%`}}></span>
-                            <span className="visually-hidden">Rating</span>
-                          </div>
-                        </div>
-                        <h2 className="place-card__name">
-                          <a href="#">White castle</a>
-                        </h2>
-                        <p className="place-card__type">Apartment</p>
-                      </div>
-                    </article>
-                  </div>
-                </li>
-              </ul>
-            </section>
+            {
+              (favoriteOffers.length === 0 ? (
+                <FavoriteEmpty />
+              ) : (
+                <section className="favorites">
+                  <h1 className="favorites__title">Saved listing</h1>
+                  <ul className="favorites__list">
+                    {getFavoriteItems(sortedOffers)}
+                  </ul>
+                </section>
+              ))
+            }
           </div>
         </main>
         <footer className="footer container">
@@ -146,6 +112,18 @@ const Favorites = ({offers}) => {
 };
 
 Favorites.propTypes = {
-  offers: PropTypes.array
+  sortedOffers: PropTypes.object,
+  getFavoriteOffers: PropTypes.func,
 };
-export default Favorites;
+const mapStateToProps = (state) => ({
+  sortedOffers: getFavoriteSortedOffers(state),
+  favoriteOffers: state.DATA.favoriteOffers,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getFavoriteOffers() {
+    dispatch(fetchFavoriteOffers());
+  },
+});
+export {Favorites};
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites);

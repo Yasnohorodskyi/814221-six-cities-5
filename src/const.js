@@ -1,5 +1,5 @@
 export const numberOfFavouritesOffers = 2;
-export const AuthorisationCodes = {
+export const AuthorizationCodes = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
 };

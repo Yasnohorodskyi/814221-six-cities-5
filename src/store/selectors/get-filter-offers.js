@@ -11,7 +11,8 @@ const sortTypesNames = {
 
 
 const getOffersByCity = createSelector(getOffers, getCity, (offers, city) =>
-  offers.filter((offer) => offer.city.name === city)
+
+  offers.filter((offer) => offer.cityName === city)
 );
 
 export const getSortedOffers = createSelector(
@@ -24,7 +25,7 @@ export const getSortedOffers = createSelector(
         case sortTypesNames.PRICE_HIGH_TO_LOW:
           return [...offers].sort((a, b) => b.price - a.price);
         case sortTypesNames.TOP_RATED_FIRST:
-          return [...offers].sort((a, b) => b.rate - a.rate);
+          return [...offers].sort((a, b) => b.rating - a.rating);
         default:
           return [...offers];
       }
