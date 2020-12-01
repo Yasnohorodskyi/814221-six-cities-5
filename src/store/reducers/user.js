@@ -1,8 +1,8 @@
-import {AuthorisationCodes} from "../../const";
+import {AuthorizationCodes} from "../../const";
 import {ActionType} from "../action";
 
 const initialState = {
-  authorizationStatus: AuthorisationCodes.NO_AUTH,
+  authorizationStatus: AuthorizationCodes.NO_AUTH,
 };
 
 const user = (state = initialState, action) => {

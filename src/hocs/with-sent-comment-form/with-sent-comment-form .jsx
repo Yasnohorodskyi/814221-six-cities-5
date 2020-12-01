@@ -9,29 +9,55 @@ const withSentCommentForm = (Component) => {
       this.state = {
         review: ``,
         rating: ``,
+        isSending: false,
       };
+      this.sendForm = React.createRef();
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleFieldChange = this.handleFieldChange.bind(this);
     }
     handleSubmit(evt) {
-
       evt.preventDefault();
       this.props.onSubmit({
         comment: this.state.review,
         rating: this.state.rating,
-        id: this.props.id
+        id: this.props.id,
       });
+
+      this.setState({
+        isSending: false,
+        review: ``,
+        rating: ``,
+      });
+      console.log(this.state);
     }
 
     handleFieldChange(evt) {
+      const reviewLength = this.state.review.length;
+      const rating = this.state.rating;
       const {name, value} = evt.target;
       this.setState({[name]: value});
-    }
+      if (reviewLength > 400 || reviewLength < 50 || rating === ``) {
+        this.setState({
+          isSending: false,
+        });
+      } else {
+        this.setState({
+          isSending: true,
+        });
+      }
 
+      console.log(this.state);
+    }
 
     render() {
       return (
-        <Component handleSubmit = {this.handleSubmit} handleFieldChange = {this.handleFieldChange} ></Component>
+        <Component
+          handleSubmit={this.handleSubmit}
+          handleFieldChange={this.handleFieldChange}
+          isSending={this.state.isSending}
+          formComment={this.state.review}
+          formRating={this.state.rating}
+        ></Component>
       );
     }
   }
@@ -44,11 +70,10 @@ const withSentCommentForm = (Component) => {
     onSubmit(authData) {
       dispatch(sendComment(authData));
       dispatch(fetchCommentsByOffer(authData.id));
-    }
+    },
   });
   const commentForm = connect(null, mapDispatchToProps)(WithSentCommentForm);
   return commentForm;
 };
 
 export default withSentCommentForm;
-

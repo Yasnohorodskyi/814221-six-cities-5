@@ -21,7 +21,7 @@ const CitiesList = (props) => {
   const getCitiesLink = () => {
     const getCitiesNames = () => {
       const citiesNameAr = offersAll.map((offer) => {
-        return offer.city.name;
+        return offer.cityName;
       });
       return new Set(citiesNameAr);
     };

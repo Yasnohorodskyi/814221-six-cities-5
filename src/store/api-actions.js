@@ -1,5 +1,5 @@
 import {ActionCreator} from "./action";
-import {AuthorisationCodes} from "../const";
+import {AuthorizationCodes} from "../const";
 
 export const fetchOffers = () => (dispatch, _getState, api) =>
   api
@@ -10,11 +10,9 @@ export const checkAuth = () => (dispatch, _getState, api) =>
   api
     .get(`/login`)
     .then(() =>
-      dispatch(ActionCreator.requiredAuthorization(AuthorisationCodes.AUTH))
+      dispatch(ActionCreator.requiredAuthorization(AuthorizationCodes.AUTH))
     )
-    .catch((err) => {
-      throw err;
-    });
+    .catch(() => {});
 
 export const login = ({login: email, password}) => (
     dispatch,
@@ -24,7 +22,7 @@ export const login = ({login: email, password}) => (
   api
     .post(`/login`, {email, password})
     .then(() =>
-      dispatch(ActionCreator.requiredAuthorization(AuthorisationCodes.AUTH))
+      dispatch(ActionCreator.requiredAuthorization(AuthorizationCodes.AUTH))
     )
     .then(() => dispatch(ActionCreator.redirectToRoute(`/`)));
 
@@ -55,3 +53,10 @@ export const changeFavoriteStatus = ({id, status}) => (
   api
     .post(`/favorite/${id}/${status}`, status)
     .then(dispatch(fetchFavoriteOffers()));
+
+export const fetchOffersNearby = (id) =>
+  (dispatch, _getState, api) =>
+    api
+      .get(`/hotels/${id}/nearby`)
+      .then(({data}) => dispatch(ActionCreator.loadOffersNearby(data)));
+

@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import CitiesList from "../cities-list/cities-list";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {AuthorisationCodes} from "../../const";
+import {AuthorizationCodes} from "../../const";
 import cn from "classnames";
 import {getSortedOffers} from "../../store/selectors/get-filter-offers";
 
-const Main = ({offersNumber, authorizationStatus, offersCity}) => {
+const Main = ({authorizationStatus, offersCity}) => {
   offersCity = [];
   return (
     <React.Fragment>
@@ -29,7 +29,7 @@ const Main = ({offersNumber, authorizationStatus, offersCity}) => {
               <nav className="header__nav">
                 <ul className="header__nav-list">
                   <li className="header__nav-item user">
-                    {authorizationStatus === AuthorisationCodes.AUTH ? (
+                    {authorizationStatus === AuthorizationCodes.AUTH ? (
                       <Link
                         to="/favorites"
                         className="header__nav-link header__nav-link--profile"
@@ -60,7 +60,7 @@ const Main = ({offersNumber, authorizationStatus, offersCity}) => {
           "page__main--index-empty": offersCity.length === 0,
         })}>
           <h1 className="visually-hidden">Cities</h1>
-          <CitiesList offersNumber={offersNumber}></CitiesList>
+          <CitiesList></CitiesList>
         </main>
       </div>
     </React.Fragment>
@@ -68,7 +68,6 @@ const Main = ({offersNumber, authorizationStatus, offersCity}) => {
 };
 
 Main.propTypes = {
-  offersNumber: PropTypes.number,
   authorizationStatus: PropTypes.string.isRequired,
   offersCity: PropTypes.array.isRequired,
 };
@@ -79,5 +78,6 @@ const mapStateToProps = (state) => ({
 
 });
 
+export {Main};
 export default connect(mapStateToProps)(Main);
 

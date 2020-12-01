@@ -14,7 +14,6 @@ const Favorites = ({favoriteOffers, getFavoriteOffers, sortedOffers}) => {
   useEffect(() => {
     getFavoriteOffers();
   }, []);
-  console.log(favoriteOffers.length);
   const getFavoriteItems = (offers) => {
     return Object.entries(offers).map((item, index) => {
       return (
@@ -126,4 +125,5 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchFavoriteOffers());
   },
 });
+export {Favorites};
 export default connect(mapStateToProps, mapDispatchToProps)(Favorites);

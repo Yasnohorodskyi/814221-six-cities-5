@@ -33,11 +33,11 @@ const App = ({offersAll, favoriteOffers}) => {
           render={({match}) => {
             return (
               <Room
-                offer={adaptOffer(
-                    offersAll.find(
-                        (offer) => offer.id === Number(match.params.id)
-                    )
-                )}
+                offer={
+                  offersAll.find(
+                      (offer) => offer.id === Number(match.params.id)
+                  )
+                }
               />
             );
           }}

@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CardOffer from "../card-offer/card-offer";
-import {adaptOffer} from "../../utils/common";
 
 const OffersList = ({
   offers,
@@ -9,25 +8,22 @@ const OffersList = ({
   styleImgClass,
   styleInfoClass,
   onCardHover,
-  numberOfOffers,
   widthImg,
   heightImg,
 }) => {
-  offers = numberOfOffers ? offers.slice(0, numberOfOffers) : offers;
   const offersList = offers.map((offer) => {
-    const adOffer = adaptOffer(offer);
 
     return (
       <CardOffer
-        id={adOffer.id}
-        key={adOffer.id}
-        offer={adOffer}
+        id={offer.id}
+        key={offer.id}
+        offer={offer}
         styleCardClass={styleCardClass}
         styleImgClass={styleImgClass}
         styleInfoClass={styleInfoClass}
         widthImg={widthImg}
         heightImg={heightImg}
-        onHover={(e) => onCardHover(adOffer.id, e)}
+        onHover={(e) => onCardHover(offer.id, e)}
       />
     );
   });
@@ -40,7 +36,6 @@ OffersList.propTypes = {
   styleCardClass: PropTypes.string.isRequired,
   styleImgClass: PropTypes.string.isRequired,
   styleInfoClass: PropTypes.string,
-  numberOfOffers: PropTypes.number,
   onCardHover: PropTypes.func.isRequired,
 };
 

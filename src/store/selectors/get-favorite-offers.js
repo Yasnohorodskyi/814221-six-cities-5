@@ -3,13 +3,13 @@ const getOffers = (state) => state.DATA.favoriteOffers;
 
 export const getFavoriteSortedOffers = createSelector(getOffers, (offers) =>
   offers.reduce((acc, offer) => {
-    if (acc[offer.city.name]) {
+    if (acc[offer.cityName]) {
       return Object.assign({}, acc, {
-        [offer.city.name]: acc[offer.city.name].concat([offer]),
+        [offer.cityName]: acc[offer.cityName].concat([offer]),
       });
     } else {
       return Object.assign({}, acc, {
-        [offer.city.name]: [offer],
+        [offer.cityName]: [offer],
       });
     }
   }, {})

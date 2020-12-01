@@ -9,6 +9,7 @@ export const ActionType = {
   LOAD_COMMENTS_BY_OFFER: `LOAD_COMMENTS_BY_OFFER`,
   LOAD_FAVORITE_OFFERS: `LOAD_FAVORITE_OFFERS`,
   CHANGE_FAVORITE_OFFERS: `CHANGE_FAVORITE_OFFERS`,
+  LOAD_OFFERS_NEARBY: `LOAD_OFFERS_NEARBY`,
 };
 
 export const ActionCreator = {
@@ -58,5 +59,10 @@ export const ActionCreator = {
   changeFavoriteOffers: (offer) => ({
     type: ActionType.CHANGE_FAVORITE_OFFERS,
     payload: offer,
-  })
+  }),
+
+  loadOffersNearby: (offers) => ({
+    type: ActionType.LOAD_OFFERS_NEARBY,
+    payload: offers,
+  }),
 };

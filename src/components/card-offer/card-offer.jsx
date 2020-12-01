@@ -20,7 +20,7 @@ const CardOffer = (props) => {
     widthImg,
     heightImg,
   } = props;
-  const {price, title, type, id, previewImage, isPremium, isFavorite} = offer;
+  const {price, title, type, id, previewImage, isPremium, isFavorite, rating} = offer;
 
   const [isFav, setFavorite] = useState(isFavorite);
   const handleAddToFavorite = () => {
@@ -80,7 +80,7 @@ const CardOffer = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `80%`}}></span>
+            <span style={{width: `${(Math.round(rating) / 5) * 100}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

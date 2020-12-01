@@ -77,4 +77,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.changeSortType(sortType));
   },
 });
+
+export {SortingMethods};
 export default connect(mapStateToProps, mapDispatchToProps)(SortingMethods);
