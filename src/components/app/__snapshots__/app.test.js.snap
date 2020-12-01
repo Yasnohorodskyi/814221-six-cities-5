@@ -83,32 +83,6 @@ exports[`<App /> render renders correctly with store 1`] = `
               onClick={[Function]}
             >
               <span>
-                Amsterdam
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Paris
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
                 Cologne
               </span>
             </a>
@@ -123,6 +97,32 @@ exports[`<App /> render renders correctly with store 1`] = `
             >
               <span>
                 Brussels
+              </span>
+            </a>
+          </li>
+          <li
+            className="locations__item"
+          >
+            <a
+              className="locations__item-link tabs__item"
+              href="#"
+              onClick={[Function]}
+            >
+              <span>
+                Amsterdam
+              </span>
+            </a>
+          </li>
+          <li
+            className="locations__item"
+          >
+            <a
+              className="locations__item-link tabs__item"
+              href="#"
+              onClick={[Function]}
+            >
+              <span>
+                Paris
               </span>
             </a>
           </li>

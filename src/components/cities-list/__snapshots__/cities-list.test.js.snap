@@ -20,32 +20,6 @@ Array [
             onClick={[Function]}
           >
             <span>
-              Amsterdam
-            </span>
-          </a>
-        </li>
-        <li
-          className="locations__item"
-        >
-          <a
-            className="locations__item-link tabs__item"
-            href="#"
-            onClick={[Function]}
-          >
-            <span>
-              Paris
-            </span>
-          </a>
-        </li>
-        <li
-          className="locations__item"
-        >
-          <a
-            className="locations__item-link tabs__item"
-            href="#"
-            onClick={[Function]}
-          >
-            <span>
               Cologne
             </span>
           </a>
@@ -60,6 +34,32 @@ Array [
           >
             <span>
               Brussels
+            </span>
+          </a>
+        </li>
+        <li
+          className="locations__item"
+        >
+          <a
+            className="locations__item-link tabs__item"
+            href="#"
+            onClick={[Function]}
+          >
+            <span>
+              Amsterdam
+            </span>
+          </a>
+        </li>
+        <li
+          className="locations__item"
+        >
+          <a
+            className="locations__item-link tabs__item"
+            href="#"
+            onClick={[Function]}
+          >
+            <span>
+              Paris
             </span>
           </a>
         </li>
@@ -111,7 +111,7 @@ Array [
         >
           2
            places to stay in 
-          Amsterdam
+          Cologne
         </b>
         <form
           action="#"
@@ -190,7 +190,7 @@ Array [
                   alt="Place image"
                   className="place-card__image"
                   height="200"
-                  src="/img/apartment-01.jpg"
+                  src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/14.jpg"
                   width="260"
                 />
               </a>
@@ -208,7 +208,7 @@ Array [
                     className="place-card__price-value"
                   >
                     €
-                    120
+                    493
                   </b>
                   <span
                     className="place-card__price-text"
@@ -264,33 +264,33 @@ Array [
                   href="/offer/1"
                   onClick={[Function]}
                 >
-                  Beautiful & luxurious studio at great location
+                  The house among olive 
                 </a>
               </h2>
               <p
                 className="place-card__type"
               >
-                apartment
+                house
               </p>
             </div>
           </article>
           <article
             className="cities__place-card place-card"
-            dataid={11}
+            dataid={2}
             onMouseOver={[Function]}
           >
             <div
               className="cities__image-wrapper place-card__image-wrapper"
             >
               <a
-                href="/offer/11"
+                href="/offer/2"
                 onClick={[Function]}
               >
                 <img
                   alt="Place image"
                   className="place-card__image"
                   height="200"
-                  src="/img/apartment-03.jpg"
+                  src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/8.jpg"
                   width="260"
                 />
               </a>
@@ -308,7 +308,7 @@ Array [
                     className="place-card__price-value"
                   >
                     €
-                    150
+                    323
                   </b>
                   <span
                     className="place-card__price-text"
@@ -361,10 +361,10 @@ Array [
                 className="place-card__name"
               >
                 <a
-                  href="/offer/11"
+                  href="/offer/2"
                   onClick={[Function]}
                 >
-                  Beautiful & luxurious studio at great location
+                  Amazing and Extremely Central Flat
                 </a>
               </h2>
               <p

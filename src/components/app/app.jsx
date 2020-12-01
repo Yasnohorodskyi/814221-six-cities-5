@@ -6,7 +6,6 @@ import Favorites from "../favorites/favorites";
 import Room from "../room/room";
 import SignIn from "../sign-in/sign-in";
 import {connect} from "react-redux";
-import {adaptOffer} from "../../utils/common";
 import PrivateRoute from "../private-route/private-route";
 import browserHistory from "../../browser-history";
 

@@ -5,9 +5,9 @@ export const review = {
   id: 1,
   rating: 4,
   user: {
-    avatar_url: `/img/avatar-angelina.jpg`,
+    photo: `/img/avatar-angelina.jpg`,
     id: 4,
-    is_pro: false,
+    isPro: false,
     name: `Lena`,
   },
 };
@@ -20,9 +20,9 @@ export const reviews = [
     id: 1,
     rating: 4,
     user: {
-      avatar_url: `/img/avatar-angelina.jpg`,
+      photo: `/img/avatar-angelina.jpg`,
       id: 4,
-      is_pro: false,
+      isPro: false,
       name: `Lena`,
     },
   },
@@ -34,9 +34,9 @@ export const reviews = [
     id: 2,
     rating: 5,
     user: {
-      avatar_url: `/img/avatar-angelina.jpg`,
+      photo: `/img/avatar-angelina.jpg`,
       id: 34,
-      is_pro: true,
+      isPro: true,
       name: `Masha`,
     },
   },
@@ -47,9 +47,9 @@ export const reviews = [
     id: 3,
     rating: 3,
     user: {
-      avatar_url: `/img/avatar-angelina.jpg`,
+      photo: `/img/avatar-angelina.jpg`,
       id: 39,
-      is_pro: false,
+      isPro: false,
       name: `Masha`,
     },
   },

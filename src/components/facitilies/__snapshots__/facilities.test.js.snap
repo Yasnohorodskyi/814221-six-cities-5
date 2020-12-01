@@ -7,32 +7,37 @@ exports[`<Facilities /> render renders correctly with full information 1`] = `
   <li
     className="property__inside-item"
   >
-    Heating
+    Laptop friendly workspace
   </li>
   <li
     className="property__inside-item"
   >
-    Kitchen
+    Washer
   </li>
   <li
     className="property__inside-item"
   >
-    Cable TV
+    Towels
   </li>
   <li
     className="property__inside-item"
   >
-    Washing machine
+    Fridge
   </li>
   <li
     className="property__inside-item"
   >
-    Coffee machine
+    Air conditioning
   </li>
   <li
     className="property__inside-item"
   >
-    Dishwasher
+    Baby seat
+  </li>
+  <li
+    className="property__inside-item"
+  >
+    Breakfast
   </li>
 </ul>
 `;

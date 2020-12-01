@@ -16,7 +16,6 @@ const ACTIVE_ICON = {
 class Map extends PureComponent {
   constructor(props) {
     super(props);
-    console.log(this.props);
     this._markers = {};
   }
 
@@ -74,7 +73,6 @@ class Map extends PureComponent {
   }
 
   _handleActiveMarkerRender() {
-    console.log(this.props.activeItem);
     const {activeItem} = this.props;
     if (!activeItem) {
       return;

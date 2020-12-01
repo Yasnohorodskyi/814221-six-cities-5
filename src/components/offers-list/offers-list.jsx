@@ -37,6 +37,8 @@ OffersList.propTypes = {
   styleImgClass: PropTypes.string.isRequired,
   styleInfoClass: PropTypes.string,
   onCardHover: PropTypes.func.isRequired,
+  widthImg: PropTypes.string.isRequired,
+  heightImg: PropTypes.string.isRequired,
 };
 
 export default OffersList;

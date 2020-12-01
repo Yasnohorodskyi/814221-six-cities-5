@@ -34,7 +34,7 @@ describe(`<CitiesList/> render`, () => {
               <CitiesList
                 offersCity={offers.slice(0, 2)}
                 offersAll={offers}
-                city={offers[0].city.name}
+                city={offers[0].cityName}
                 changeCity={noop}
                 activeCard={activeCard}
               />

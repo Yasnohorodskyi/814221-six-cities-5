@@ -2,7 +2,6 @@ import React from "react";
 import renderer from "react-test-renderer";
 import {offers} from "../test-mocks/offers-mocks";
 import {CardOffer} from "../card-offer/card-offer";
-import {adaptOffer} from "../../utils/common";
 import {BrowserRouter as Router} from 'react-router-dom';
 const noop = () => {};
 
@@ -17,7 +16,7 @@ describe(`<CardOffer /> render`, () => {
       .create(
           <Router>
             <CardOffer
-              offer={adaptOffer(offers[0])}
+              offer={(offers[0])}
               onFavButtonClick={noop}
               changeFavoriteOffers={noop}
               onHover={noop}

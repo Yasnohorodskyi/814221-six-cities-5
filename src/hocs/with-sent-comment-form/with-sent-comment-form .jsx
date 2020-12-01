@@ -8,7 +8,7 @@ const withSentCommentForm = (Component) => {
       super(props);
       this.state = {
         review: ``,
-        rating: ``,
+        rating: 0,
         isSending: false,
       };
       this.sendForm = React.createRef();
@@ -17,6 +17,9 @@ const withSentCommentForm = (Component) => {
     }
     handleSubmit(evt) {
       evt.preventDefault();
+      this.setState({
+        isSending: true,
+      });
       this.props.onSubmit({
         comment: this.state.review,
         rating: this.state.rating,
@@ -28,25 +31,11 @@ const withSentCommentForm = (Component) => {
         review: ``,
         rating: ``,
       });
-      console.log(this.state);
     }
 
     handleFieldChange(evt) {
-      const reviewLength = this.state.review.length;
-      const rating = this.state.rating;
       const {name, value} = evt.target;
       this.setState({[name]: value});
-      if (reviewLength > 400 || reviewLength < 50 || rating === ``) {
-        this.setState({
-          isSending: false,
-        });
-      } else {
-        this.setState({
-          isSending: true,
-        });
-      }
-
-      console.log(this.state);
     }
 
     render() {

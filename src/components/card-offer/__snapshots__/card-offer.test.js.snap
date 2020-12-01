@@ -17,7 +17,7 @@ exports[`<CardOffer /> render renders correctly with full information 1`] = `
         alt="Place image"
         className="place-card__image"
         height="200"
-        src="/img/apartment-01.jpg"
+        src="https://assets.htmlacademy.ru/intensives/javascript-3/hotel/14.jpg"
         width="260"
       />
     </a>
@@ -35,7 +35,7 @@ exports[`<CardOffer /> render renders correctly with full information 1`] = `
           className="place-card__price-value"
         >
           €
-          120
+          493
         </b>
         <span
           className="place-card__price-text"
@@ -91,13 +91,13 @@ exports[`<CardOffer /> render renders correctly with full information 1`] = `
         href="/offer/1"
         onClick={[Function]}
       >
-        Beautiful & luxurious studio at great location
+        The house among olive 
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      apartment
+      house
     </p>
   </div>
 </article>

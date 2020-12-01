@@ -57,3 +57,19 @@ export const adaptOffer = (offer) => {
 
   return adaptedOffer;
 };
+
+export const adaptReview = (review) => {
+  const adaptedReview = {
+    comment: review.comment,
+    date: review.date,
+    id: review.id,
+    rating: review.rating,
+    user: {
+      photo: review.user.avatar_url,
+      id: review.user.id,
+      isPro: review.is_pro,
+      name: review.user.name,
+    },
+  };
+  return adaptedReview;
+};
