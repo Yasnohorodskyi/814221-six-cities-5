@@ -114,6 +114,7 @@ const Favorites = ({favoriteOffers, getFavoriteOffers, sortedOffers}) => {
 Favorites.propTypes = {
   sortedOffers: PropTypes.object,
   getFavoriteOffers: PropTypes.func,
+  favoriteOffers: PropTypes.array,
 };
 const mapStateToProps = (state) => ({
   sortedOffers: getFavoriteSortedOffers(state),

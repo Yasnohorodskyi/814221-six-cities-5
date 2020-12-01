@@ -83,32 +83,6 @@ exports[`<Main /> render renders correctly with statusAthoridation = AUTH 1`] = 
               onClick={[Function]}
             >
               <span>
-                Amsterdam
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Paris
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
                 Cologne
               </span>
             </a>
@@ -123,6 +97,32 @@ exports[`<Main /> render renders correctly with statusAthoridation = AUTH 1`] = 
             >
               <span>
                 Brussels
+              </span>
+            </a>
+          </li>
+          <li
+            className="locations__item"
+          >
+            <a
+              className="locations__item-link tabs__item"
+              href="#"
+              onClick={[Function]}
+            >
+              <span>
+                Amsterdam
+              </span>
+            </a>
+          </li>
+          <li
+            className="locations__item"
+          >
+            <a
+              className="locations__item-link tabs__item"
+              href="#"
+              onClick={[Function]}
+            >
+              <span>
+                Paris
               </span>
             </a>
           </li>
@@ -271,32 +271,6 @@ exports[`<Main /> render renders correctly with statusAthoridation = NO_AUTH 1`]
               onClick={[Function]}
             >
               <span>
-                Amsterdam
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Paris
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
                 Cologne
               </span>
             </a>
@@ -311,6 +285,32 @@ exports[`<Main /> render renders correctly with statusAthoridation = NO_AUTH 1`]
             >
               <span>
                 Brussels
+              </span>
+            </a>
+          </li>
+          <li
+            className="locations__item"
+          >
+            <a
+              className="locations__item-link tabs__item"
+              href="#"
+              onClick={[Function]}
+            >
+              <span>
+                Amsterdam
+              </span>
+            </a>
+          </li>
+          <li
+            className="locations__item"
+          >
+            <a
+              className="locations__item-link tabs__item"
+              href="#"
+              onClick={[Function]}
+            >
+              <span>
+                Paris
               </span>
             </a>
           </li>

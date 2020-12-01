@@ -91,6 +91,7 @@ const CardOffer = (props) => {
       </div>
     </article>
   );
+
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -112,6 +113,7 @@ CardOffer.propTypes = {
     price: PropTypes.number.isRequired,
     isPremium: PropTypes.bool.isRequired,
     isFavorite: PropTypes.bool.isRequired,
+    rating: PropTypes.number.isRequired,
   }).isRequired,
   styleCardClass: PropTypes.string.isRequired,
   styleImgClass: PropTypes.string.isRequired,
@@ -119,6 +121,7 @@ CardOffer.propTypes = {
   onFavButtonClick: PropTypes.func.isRequired,
   widthImg: PropTypes.string.isRequired,
   heightImg: PropTypes.string.isRequired,
+  changeFavoriteOffers: PropTypes.func.isRequired,
 };
 
 

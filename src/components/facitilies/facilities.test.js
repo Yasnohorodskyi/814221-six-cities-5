@@ -6,7 +6,7 @@ import Facilities from "../facitilies/facilities";
 describe(`<Facilities /> render`, () => {
   it(`renders correctly with full information`, () => {
     const facilitiesComponent = renderer
-      .create(<Facilities facilities={offers[0].goods} />)
+      .create(<Facilities facilities={offers[0].facilities} />)
       .toJSON();
 
     expect(facilitiesComponent).toMatchSnapshot();
