@@ -30,6 +30,8 @@ export const offerState = (state = initialState, action) => {
       return extend(state, {
         activeCard: action.payload,
       });
+
+
   }
   return state;
 };

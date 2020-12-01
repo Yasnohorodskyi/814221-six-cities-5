@@ -8,18 +8,28 @@ const withSentCommentForm = (Component) => {
       super(props);
       this.state = {
         review: ``,
-        rating: ``,
+        rating: 0,
+        isSending: false,
       };
+      this.sendForm = React.createRef();
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleFieldChange = this.handleFieldChange.bind(this);
     }
     handleSubmit(evt) {
-
       evt.preventDefault();
+      this.setState({
+        isSending: true,
+      });
       this.props.onSubmit({
         comment: this.state.review,
         rating: this.state.rating,
-        id: this.props.id
+        id: this.props.id,
+      });
+
+      this.setState({
+        isSending: false,
+        review: ``,
+        rating: ``,
       });
     }
 
@@ -28,10 +38,15 @@ const withSentCommentForm = (Component) => {
       this.setState({[name]: value});
     }
 
-
     render() {
       return (
-        <Component handleSubmit = {this.handleSubmit} handleFieldChange = {this.handleFieldChange} ></Component>
+        <Component
+          handleSubmit={this.handleSubmit}
+          handleFieldChange={this.handleFieldChange}
+          isSending={this.state.isSending}
+          formComment={this.state.review}
+          formRating={this.state.rating}
+        ></Component>
       );
     }
   }
@@ -44,11 +59,10 @@ const withSentCommentForm = (Component) => {
     onSubmit(authData) {
       dispatch(sendComment(authData));
       dispatch(fetchCommentsByOffer(authData.id));
-    }
+    },
   });
   const commentForm = connect(null, mapDispatchToProps)(WithSentCommentForm);
   return commentForm;
 };
 
 export default withSentCommentForm;
-

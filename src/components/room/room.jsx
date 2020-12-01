@@ -1,44 +1,68 @@
-import React, {PureComponent} from "react";
+import React, {useState, useEffect} from "react";
 import Facilities from "../facitilies/facilities";
 import PropTypes from "prop-types";
 import SendCommentForm from "../send-comment-form/send-comment-form";
 import withSendCommentForm from "../../hocs/with-sent-comment-form/with-sent-comment-form ";
 import ReviewsList from "../reviews-list/reviews-list";
-// import Map from "../map/map";
-// import withOffersList from "../../hocs/with-offers-list/with-offers-list";
-// import Offers from "../offers-list/offers-list";
+import Map from "../map/map";
+import withOffersList from "../../hocs/with-offers-list/with-offers-list";
+import Loader from "react-loader-spinner";
+import Offers from "../offers-list/offers-list";
+import {changeFavoriteStatus} from "../../store/api-actions";
 import {Link} from "react-router-dom";
-import {fetchCommentsByOffer} from "../../store/api-actions";
+import {
+  fetchCommentsByOffer,
+  fetchOffersNearby,
+} from "../../store/api-actions";
 import {connect} from "react-redux";
-// import OffersList from "../offers-list/offers-list";
-// const OffersList = withOffersList(Offers);
+import {AuthorizationCodes} from "../../const";
+import {ActionCreator} from "../../store/action";
+import "./room.css";
+const OffersList = withOffersList(Offers);
 
 const SendCommForm = withSendCommentForm(SendCommentForm);
-class Room extends PureComponent {
-  constructor(props) {
-    super();
-    this.offer = props.offer;
-  }
+const Room = (props) => {
+  const {offer, onFavButtonClick} = props;
+  const [isFav, setFavorite] = useState(false);
+  useEffect(() => {
+    props.fetchOffersNearby(offer.id);
+    props.fetchCommentsByOffer(offer.id);
+  }, [offer.id]);
 
-  componentDidMount() {
-    this.props.fetchCommentsByOffer(this.offer.id);
-  }
+  useEffect(() => {
+    setFavorite(offer.isFavorite);
+  }, [offer]);
 
-  render() {
-    const {
-      images,
-      isPremium,
-      price,
-      title,
-      description,
-      type,
-      rating,
-      bedrooms,
-      guests,
-      facilities,
-      host,
-      id,
-    } = this.offer;
+  const handleAddToFavorite = () => {
+    const {id} = props.offer;
+    if (props.authorizationStatus === AuthorizationCodes.AUTH) {
+      onFavButtonClick({
+        status: isFav === true ? 0 : 1,
+        id,
+      });
+      setFavorite(!isFav);
+      props.changeFavoriteOffers(props.offer);
+    } else {
+      props.redirectToRoute(`/login`);
+    }
+  };
+
+  const {
+    images,
+    isPremium,
+    price,
+    title,
+    description,
+    type,
+    rating,
+    bedrooms,
+    guests,
+    facilities,
+    host,
+    id,
+  } = offer;
+  if (props.offersNearBy !== undefined) {
+    const offersToMap = props.offersNearBy.slice().concat(offer);
     return (
       <React.Fragment>
         <div className="page">
@@ -59,15 +83,26 @@ class Room extends PureComponent {
                 <nav className="header__nav">
                   <ul className="header__nav-list">
                     <li className="header__nav-item user">
-                      <a
-                        className="header__nav-link header__nav-link--profile"
-                        href="#"
-                      >
-                        <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                        <span className="header__user-name user__name">
-                          Oliver.conner@gmail.com
-                        </span>
-                      </a>
+                      {props.authorizationStatus === AuthorizationCodes.AUTH ? (
+                        <Link
+                          to="/favorites"
+                          className="header__nav-link header__nav-link--profile"
+                        >
+                          <div className="header__avatar-wrapper user__avatar-wrapper"></div>
+                          <span className="header__user-name user__name">
+                            Oliver.conner@gmail.com
+                          </span>
+                        </Link>
+                      ) : (
+                        <Link
+                          to="/login"
+                          className="header__nav-link header__nav-link--profile"
+                          href="#"
+                        >
+                          <div className="header__avatar-wrapper user__avatar-wrapper"></div>
+                          <span className="header__login">Sign in</span>
+                        </Link>
+                      )}
                     </li>
                   </ul>
                 </nav>
@@ -102,8 +137,13 @@ class Room extends PureComponent {
                   <div className="property__name-wrapper">
                     <h1 className="property__name">{title}</h1>
                     <button
-                      className="property__bookmark-button button"
+                      className={
+                        isFav
+                          ? `property__bookmark-button property__bookmark-button--active button`
+                          : `property__bookmark-button button`
+                      }
                       type="button"
+                      onClick={handleAddToFavorite}
                     >
                       <svg
                         className="property__bookmark-icon"
@@ -117,7 +157,11 @@ class Room extends PureComponent {
                   </div>
                   <div className="property__rating rating">
                     <div className="property__stars rating__stars">
-                      <span style={{width: `80%`}}></span>
+                      <span
+                        style={{
+                          width: `${(Math.round(rating) / 5) * 100}%`,
+                        }}
+                      ></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                     <span className="property__rating-value rating__value">
@@ -166,17 +210,21 @@ class Room extends PureComponent {
                   <section className="property__reviews reviews">
                     <h2 className="reviews__title">
                       Reviews &middot;{` `}
-                      <span className="reviews__amount">{this.props.commentsByOffer.length}</span>
+                      <span className="reviews__amount">
+                        {props.commentsByOffer.length}
+                      </span>
                     </h2>
-                    <ReviewsList
-                      reviews={this.props.commentsByOffer}
-                    ></ReviewsList>
-                    <SendCommForm id={id}></SendCommForm>
+                    <ReviewsList reviews={props.commentsByOffer}></ReviewsList>
+                    {props.authorizationStatus === AuthorizationCodes.AUTH ? (
+                      <SendCommForm id={id}></SendCommForm>
+                    ) : (
+                      ``
+                    )}
                   </section>
                 </div>
               </div>
-              <section className="property__mofferap map">
-                {/* <Map offers={}></Map> */}
+              <section className="property__map map">
+                <Map offers={offersToMap} activeItem={offer.id}></Map>
               </section>
             </section>
             <div className="container">
@@ -185,12 +233,13 @@ class Room extends PureComponent {
                   Other places in the neighbourhood
                 </h2>
                 <div className="near-places__list places__list">
-                  {/* <OffersList
-                    offers={offers}
+                  <OffersList
+                    offers={props.offersNearBy}
                     styleCardClass="near-places__card"
                     styleImgClass="near-places__image-wrapper"
-                    numberOfOffers = {3}
-                  ></OffersList> */}
+                    widthImg="260"
+                    heightImg="200"
+                  ></OffersList>
                 </div>
               </section>
             </div>
@@ -198,8 +247,18 @@ class Room extends PureComponent {
         </div>
       </React.Fragment>
     );
+  } else {
+    return (
+      <Loader
+        type="ThreeDots"
+        color="#4481c3"
+        height={80}
+        width={80}
+        timeout={3000}
+      />
+    );
   }
-}
+};
 
 Room.propTypes = {
   offer: PropTypes.shape({
@@ -225,13 +284,27 @@ Room.propTypes = {
   commentsByOffer: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = ({DATA}) => ({
-  commentsByOffer: DATA.commentsByOffer,
+const mapStateToProps = (state) => ({
+  commentsByOffer: state.DATA.commentsByOffer,
+  offersNearBy: state.DATA.offersNearBy,
+  authorizationStatus: state.USER.authorizationStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchCommentsByOffer(comments) {
-    dispatch(fetchCommentsByOffer(comments));
+  fetchCommentsByOffer(id) {
+    dispatch(fetchCommentsByOffer(id));
+  },
+  fetchOffersNearby(id) {
+    dispatch(fetchOffersNearby(id));
+  },
+  onFavButtonClick(authData) {
+    dispatch(changeFavoriteStatus(authData));
+  },
+  changeFavoriteOffers(offer) {
+    dispatch(ActionCreator.changeFavoriteOffers(offer));
+  },
+  redirectToRoute(route) {
+    dispatch(ActionCreator.redirectToRoute(route));
   },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Room);

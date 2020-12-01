@@ -1,7 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SendCommentForm = ({handleSubmit, handleFieldChange}) => {
+const SendCommentForm = ({
+  handleSubmit,
+  handleFieldChange,
+  isSending,
+  formComment,
+  formRating,
+}) => {
+  const Rating = [
+    {value: 5, title: `perfect`},
+    {value: 4, title: `good`},
+    {value: 3, title: `not bad`},
+    {value: 2, title: `badly`},
+    {value: 1, title: `terribly`},
+  ];
+
+
   return (
     <form
       className="reviews__form form"
@@ -13,95 +28,28 @@ const SendCommentForm = ({handleSubmit, handleFieldChange}) => {
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        <input
-          onChange={handleFieldChange}
-          className="form__rating-input visually-hidden"
-          name="rating"
-          value="5"
-          id="5-stars"
-          type="radio"
-        />
-        <label
-          htmlFor="5-stars"
-          className="reviews__rating-label form__rating-label"
-          title="perfect"
-        >
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input
-          onChange={handleFieldChange}
-          className="form__rating-input visually-hidden"
-          name="rating"
-          value="4"
-          id="4-stars"
-          type="radio"
-        />
-        <label
-          htmlFor="4-stars"
-          className="reviews__rating-label form__rating-label"
-          title="good"
-        >
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input
-          onChange={handleFieldChange}
-          className="form__rating-input visually-hidden"
-          name="rating"
-          value="3"
-          id="3-stars"
-          type="radio"
-        />
-        <label
-          htmlFor="3-stars"
-          className="reviews__rating-label form__rating-label"
-          title="not bad"
-        >
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input
-          onChange={handleFieldChange}
-          className="form__rating-input visually-hidden"
-          name="rating"
-          value="2"
-          id="2-stars"
-          type="radio"
-        />
-        <label
-          htmlFor="2-stars"
-          className="reviews__rating-label form__rating-label"
-          title="badly"
-        >
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input
-          onChange={handleFieldChange}
-          className="form__rating-input visually-hidden"
-          name="rating"
-          value="1"
-          id="1-star"
-          type="radio"
-        />
-        <label
-          htmlFor="1-star"
-          className="reviews__rating-label form__rating-label"
-          title="terribly"
-        >
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
+        {Rating.map((rate) => (
+          <>
+            <input
+              onChange={handleFieldChange}
+              className="form__rating-input visually-hidden"
+              name="rating"
+              value={rate.value}
+              id={`${rate.value}-stars`}
+              type="radio"
+              checked={formRating === rate.value}
+            />
+            <label
+              htmlFor={`${rate.value}-stars`}
+              className="reviews__rating-label form__rating-label"
+              title={rate.title}
+            >
+              <svg className="form__star-image" width="37" height="33">
+                <use xlinkHref="#icon-star"></use>
+              </svg>
+            </label>
+          </>
+        ))}
       </div>
       <textarea
         onChange={handleFieldChange}
@@ -109,6 +57,7 @@ const SendCommentForm = ({handleSubmit, handleFieldChange}) => {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
+        value={formComment}
       ></textarea>
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
@@ -119,7 +68,12 @@ const SendCommentForm = ({handleSubmit, handleFieldChange}) => {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled=""
+          disabled={
+            isSending ||
+            formComment.length < 50 ||
+            formComment.length > 400 ||
+            formRating === 0
+          }
         >
           Submit
         </button>
@@ -131,6 +85,9 @@ const SendCommentForm = ({handleSubmit, handleFieldChange}) => {
 SendCommentForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   handleFieldChange: PropTypes.func.isRequired,
+  isSending: PropTypes.bool.isRequired,
+  formComment: PropTypes.string.isRequired,
+  formRating: PropTypes.number.isRequired,
 };
 
 export default SendCommentForm;
