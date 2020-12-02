@@ -39,7 +39,7 @@ exports[`<ReviewsList/> render renders correctly with full information 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "60%",
               }
             }
           />
@@ -98,7 +98,7 @@ exports[`<ReviewsList/> render renders correctly with full information 1`] = `
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "100%",
               }
             }
           />
