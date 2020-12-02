@@ -6,8 +6,9 @@ import {Provider} from "react-redux";
 import {Router} from "react-router-dom";
 import configureStore from "redux-mock-store";
 import browserHistory from "../../browser-history";
+import {SortType} from "../../const";
 const noop = () => {};
-const activeCard = {};
+const activeCard = offers[0];
 
 describe(`<CitiesList/> render`, () => {
   const mockStore = configureStore([]);
@@ -17,9 +18,11 @@ describe(`<CitiesList/> render`, () => {
       DATA: {
         offersAll: offers,
       },
-      USER: {},
+      USER: {
+      },
       STATE: {
-        activeCard: {},
+        activeCard: offers[0],
+        sortType: SortType.POPULAR,
       },
     });
   });

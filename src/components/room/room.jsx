@@ -307,4 +307,5 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.redirectToRoute(route));
   },
 });
+export {Room};
 export default connect(mapStateToProps, mapDispatchToProps)(Room);
