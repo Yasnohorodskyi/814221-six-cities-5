@@ -1,4 +1,4 @@
-export const numberOfFavouritesOffers = 2;
+
 export const AuthorizationCodes = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
@@ -10,3 +10,5 @@ export const SortType = {
   PRICE_HIGH_TO_LOW: `Price: high to low`,
   TOP_RATED_FIRST: `Top rated first`,
 };
+
+export const NUMBER_OF_COMMENTS = 10;

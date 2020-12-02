@@ -1,5 +1,6 @@
 import {ActionCreator} from "./action";
 import {AuthorizationCodes} from "../const";
+import {toast} from "react-toastify";
 
 export const fetchOffers = () => (dispatch, _getState, api) =>
   api
@@ -38,7 +39,8 @@ export const sendComment = ({id, comment, rating}) => (
 ) =>
   api
     .post(`/comments/${id}`, {comment, rating})
-    .then(({data}) => dispatch(ActionCreator.loadCommentsByOffer(data)));
+    .then(({data}) => dispatch(ActionCreator.loadCommentsByOffer(data)))
+    .catch((err) => toast(err));
 
 export const fetchFavoriteOffers = () => (dispatch, _getState, api) =>
   api

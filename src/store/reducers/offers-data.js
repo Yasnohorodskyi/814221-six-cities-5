@@ -39,6 +39,8 @@ const offersData = (state = initialState, action) => {
           return offer;
         }),
       });
+    case ActionType.RESET_OFFERS:
+      return extend({}, initialState);
 
     case ActionType.LOAD_OFFERS_NEARBY:
       return extend(state, {
