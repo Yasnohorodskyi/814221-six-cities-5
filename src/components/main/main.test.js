@@ -4,21 +4,30 @@ import {offersCity, offers} from "../test-mocks/offers-mocks";
 import {BrowserRouter as Router} from "react-router-dom";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import {AuthorizationCodes} from "../../const";
+import {AuthorizationCodes, SortType} from "../../const";
 import {Main} from "../main/main";
 
 
 describe(`<Main /> render`, () => {
+
   const mockStore = configureStore([]);
+  const div = document.createElement(`div`);
+  div.id = `map`;
+  document.body.appendChild(div);
   let store = null;
   beforeEach(() => {
     store = mockStore({
       DATA: {
         offersAll: offers,
+        offersCity,
       },
-      USER: {},
+      USER: {
+        authorisationStatus: AuthorizationCodes.NO_AUTH
+      },
       STATE: {
         activeCard: {},
+        city: `Paris`,
+        sortType: SortType.POPULAR
       },
     });
   });
@@ -29,7 +38,7 @@ describe(`<Main /> render`, () => {
           <Provider store={store}>
             <Router>
               <Main
-                authorisationStatus={AuthorizationCodes.AUTH}
+                authorizationStatus={AuthorizationCodes.AUTH}
                 offersCity={offersCity}
               />
             </Router>
@@ -45,7 +54,7 @@ describe(`<Main /> render`, () => {
           <Provider store={store}>
             <Router>
               <Main
-                authorisationStatus={AuthorizationCodes.NO_AUTH}
+                authorizationStatus={AuthorizationCodes.NO_AUTH}
                 offersCity={offersCity}
               />
             </Router>
