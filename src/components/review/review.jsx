@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {format} from "date-fns";
 
 const Review = ({review}) => {
-  const {user, comment, date} = review;
+  const {user, comment, date,rating} = review;
   let formattedDateTime = format(
       new Date(date),
       `MMMM yyyy`
@@ -25,7 +25,7 @@ const Review = ({review}) => {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={{width: `80%`}}></span>
+            <span style={{width: `${(Math.round(rating) / 5) * 100}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
