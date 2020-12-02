@@ -14,11 +14,6 @@ export const offerState = (state = initialState, action) => {
         city: action.payload,
       });
 
-    case ActionType.GET_OFFERS:
-      return extend(state, {
-        offersCity: action.payload,
-      });
-
     case ActionType.RESET_OFFERS:
       return extend({}, initialState);
 

@@ -16,7 +16,6 @@ const SendCommentForm = ({
     {value: 1, title: `terribly`},
   ];
 
-
   return (
     <form
       className="reviews__form form"
@@ -28,8 +27,8 @@ const SendCommentForm = ({
         Your review
       </label>
       <div className="reviews__rating-form form__rating">
-        {Rating.map((rate) => (
-          <>
+        {Rating.map((rate, index) => (
+          <React.Fragment key={index} >
             <input
               onChange={handleFieldChange}
               className="form__rating-input visually-hidden"
@@ -48,7 +47,7 @@ const SendCommentForm = ({
                 <use xlinkHref="#icon-star"></use>
               </svg>
             </label>
-          </>
+          </React.Fragment>
         ))}
       </div>
       <textarea
@@ -87,7 +86,7 @@ SendCommentForm.propTypes = {
   handleFieldChange: PropTypes.func.isRequired,
   isSending: PropTypes.bool.isRequired,
   formComment: PropTypes.string.isRequired,
-  formRating: PropTypes.number.isRequired,
+  formRating: PropTypes.string.isRequired,
 };
 
 export default SendCommentForm;

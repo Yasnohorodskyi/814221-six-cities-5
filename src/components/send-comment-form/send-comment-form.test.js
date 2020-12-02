@@ -4,7 +4,7 @@ import SendCommentForm from "../send-comment-form/send-comment-form";
 
 const noop = () => {};
 const formComment = ``;
-const formRating = 0;
+const formRating = ``;
 const isSending = false;
 
 describe(`<SendCommentForm/> render`, () => {
