@@ -1,6 +1,5 @@
 export const review = {
-  comment:
-    `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+  comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
   date: `2019-05-08T14:13:56.569Z`,
   id: 1,
   rating: 4,
@@ -14,8 +13,7 @@ export const review = {
 
 export const reviews = [
   {
-    comment:
-      `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+    comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
     date: `2019-05-08T14:13:53.569Z`,
     id: 1,
     rating: 4,
@@ -28,8 +26,7 @@ export const reviews = [
   },
 
   {
-    comment:
-      `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+    comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
     date: `2019-05-08T14:13:56.569Z`,
     id: 2,
     rating: 5,
@@ -41,8 +38,7 @@ export const reviews = [
     },
   },
   {
-    comment:
-      `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+    comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
     date: `2019-05-08T14:13:58.569Z`,
     id: 3,
     rating: 3,
@@ -50,6 +46,33 @@ export const reviews = [
       photo: `/img/avatar-angelina.jpg`,
       id: 39,
       isPro: false,
+      name: `Masha`,
+    },
+  },
+];
+
+export const reviewsBeforeAdapt = [
+  {
+    comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+    date: `2019-05-08T14:13:56.569Z`,
+    id: 2,
+    rating: 5,
+    user: {
+      avatar_url: `/img/avatar-angelina.jpg`,
+      id: 34,
+      is_pro: true,
+      name: `Masha`,
+    },
+  },
+  {
+    comment: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.`,
+    date: `2019-05-08T14:13:58.569Z`,
+    id: 3,
+    rating: 3,
+    user: {
+      avatar_url: `/img/avatar-angelina.jpg`,
+      id: 39,
+      is_pro: false,
       name: `Masha`,
     },
   },
