@@ -81,22 +81,20 @@ const Favorites = ({favoriteOffers, getFavoriteOffers, sortedOffers}) => {
           })}
         >
           <div className="page__favorites-container container">
-            {
-              (favoriteOffers.length === 0 ? (
-                <FavoriteEmpty />
-              ) : (
-                <section className="favorites">
-                  <h1 className="favorites__title">Saved listing</h1>
-                  <ul className="favorites__list">
-                    {getFavoriteItems(sortedOffers)}
-                  </ul>
-                </section>
-              ))
-            }
+            {favoriteOffers.length === 0 ? (
+              <FavoriteEmpty />
+            ) : (
+              <section className="favorites">
+                <h1 className="favorites__title">Saved listing</h1>
+                <ul className="favorites__list">
+                  {getFavoriteItems(sortedOffers)}
+                </ul>
+              </section>
+            )}
           </div>
         </main>
         <footer className="footer container">
-          <a className="footer__logo-link" href="main.html">
+          <Link to="/" className="footer__logo-link" href="main.html">
             <img
               className="footer__logo"
               src="img/logo.svg"
@@ -104,7 +102,7 @@ const Favorites = ({favoriteOffers, getFavoriteOffers, sortedOffers}) => {
               width="64"
               height="33"
             />
-          </a>
+          </Link>
         </footer>
       </div>
     </React.Fragment>
