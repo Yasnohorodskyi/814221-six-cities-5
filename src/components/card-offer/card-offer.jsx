@@ -2,10 +2,11 @@ import React, {useState} from "react";
 import PropTypes from "prop-types";
 import {Link, withRouter} from "react-router-dom";
 import cn from "classnames";
-import {changeFavoriteStatus} from "../../store/api-actions";
+import {
+  changeFavoriteStatus,
+} from "../../store/api-actions";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../store/action";
-import {AuthorizationCodes} from "../../const";
 
 const CardOffer = (props) => {
   const {
@@ -18,31 +19,17 @@ const CardOffer = (props) => {
     changeFavoriteOffers,
     widthImg,
     heightImg,
-    authorizationStatus,
   } = props;
-  const {
-    price,
-    title,
-    type,
-    id,
-    previewImage,
-    isPremium,
-    isFavorite,
-    rating,
-  } = offer;
+  const {price, title, type, id, previewImage, isPremium, isFavorite, rating} = offer;
 
   const [isFav, setFavorite] = useState(isFavorite);
   const handleAddToFavorite = () => {
-    if (authorizationStatus === AuthorizationCodes.AUTH) {
-      onFavButtonClick({
-        status: isFav === true ? 0 : 1,
-        id,
-      });
-      setFavorite(!isFav);
-      changeFavoriteOffers(offer);
-    } else {
-      props.redirectToRoute(`/login`);
-    }
+    onFavButtonClick({
+      status: isFav === true ? 0 : 1,
+      id,
+    });
+    setFavorite(!isFav);
+    changeFavoriteOffers(offer);
   };
   return (
     <article
@@ -93,9 +80,7 @@ const CardOffer = (props) => {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span
-              style={{width: `${(Math.round(rating) / 5) * 100}%`}}
-            ></span>
+            <span style={{width: `${(Math.round(rating) / 5) * 100}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -106,11 +91,8 @@ const CardOffer = (props) => {
       </div>
     </article>
   );
-};
 
-const mapStateToProps = (state) => ({
-  authorizationStatus: state.USER.authorizationStatus,
-});
+};
 
 const mapDispatchToProps = (dispatch) => ({
   onFavButtonClick(authData) {
@@ -118,9 +100,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   changeFavoriteOffers(offer) {
     dispatch(ActionCreator.changeFavoriteOffers(offer));
-  },
-  redirectToRoute(route) {
-    dispatch(ActionCreator.redirectToRoute(route));
   },
 });
 
@@ -143,12 +122,11 @@ CardOffer.propTypes = {
   widthImg: PropTypes.string.isRequired,
   heightImg: PropTypes.string.isRequired,
   changeFavoriteOffers: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  redirectToRoute: PropTypes.func.isRequired,
 };
+
 
 export {CardOffer};
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(withRouter(CardOffer));
