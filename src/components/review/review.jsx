@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import {format} from "date-fns";
 
 const Review = ({review}) => {
-  const {user, comment, date,rating} = review;
+  const {user, comment, date, rating} = review;
   let formattedDateTime = format(
       new Date(date),
       `MMMM yyyy`
