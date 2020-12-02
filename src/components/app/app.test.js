@@ -5,9 +5,13 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {offers} from "../test-mocks/offers-mocks";
 import {favoriteOffers} from "../test-mocks/offers-mocks";
+import {AuthorizationCodes, SortType} from "../../const";
 
 
 describe(`<App /> render`, () => {
+  const div = document.createElement(`div`);
+  div.id = `map`;
+  document.body.appendChild(div);
   const mockStore = configureStore([]);
   let store = null;
   let appComponent = null;
@@ -15,9 +19,16 @@ describe(`<App /> render`, () => {
     store = mockStore({
       DATA: {
         offersAll: offers,
+
       },
-      USER: {},
-      STATE: {},
+      USER: {
+        authorizationStatus: AuthorizationCodes.NO_AUTH
+      },
+      STATE: {
+        city: `Paris`,
+        activeCard: offers[0],
+        sortType: SortType.POPULAR
+      },
     });
   });
 
@@ -26,7 +37,7 @@ describe(`<App /> render`, () => {
     appComponent = renderer
       .create(
           <Provider store={store}>
-            <App offersAll={offers} favoriteOffers={favoriteOffers} />
+            <App offersAll={offers} favoriteOffers={favoriteOffers} authorizationStatus = {AuthorizationCodes.NO_AUTH} />
           </Provider>
       )
       .toJSON();

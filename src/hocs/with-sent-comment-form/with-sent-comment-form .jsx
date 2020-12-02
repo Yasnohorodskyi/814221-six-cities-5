@@ -8,7 +8,7 @@ const withSentCommentForm = (Component) => {
       super(props);
       this.state = {
         review: ``,
-        rating: 0,
+        rating: ``,
         isSending: false,
       };
       this.sendForm = React.createRef();
