@@ -1,9 +1,10 @@
 import {extend} from "../../utils/common";
 import {ActionType} from "../../store/action";
+import {SortType} from "../../const";
 
 const initialState = {
   city: `Paris`,
-  sortType: `Popular`,
+  sortType: SortType.POPULAR,
   activeCard: {},
 };
 
@@ -13,9 +14,6 @@ export const offerState = (state = initialState, action) => {
       return extend(state, {
         city: action.payload,
       });
-
-    case ActionType.RESET_OFFERS:
-      return extend({}, initialState);
 
     case ActionType.CHANGE_SORT_TYPE:
       return extend(state, {

@@ -24,7 +24,7 @@ exports[`<ReviewsList/> render renders correctly with full information 1`] = `
       <span
         className="reviews__user-name"
       >
-        Lena
+        Masha
       </span>
     </div>
     <div
@@ -57,7 +57,7 @@ exports[`<ReviewsList/> render renders correctly with full information 1`] = `
       </p>
       <time
         className="reviews__time"
-        dateTime="2019-05-08T14:13:53.569Z"
+        dateTime="2019-05-08T14:13:58.569Z"
       >
         May 2019
       </time>
@@ -142,7 +142,7 @@ exports[`<ReviewsList/> render renders correctly with full information 1`] = `
       <span
         className="reviews__user-name"
       >
-        Masha
+        Lena
       </span>
     </div>
     <div
@@ -175,7 +175,7 @@ exports[`<ReviewsList/> render renders correctly with full information 1`] = `
       </p>
       <time
         className="reviews__time"
-        dateTime="2019-05-08T14:13:58.569Z"
+        dateTime="2019-05-08T14:13:53.569Z"
       >
         May 2019
       </time>
